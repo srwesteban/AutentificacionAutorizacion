@@ -37,7 +37,6 @@ namespace AutentificacionAutorizacion.Controllers
             Session["rol"] = null;
             Session["usuario"] = null;
             return RedirectToAction("Login", "Inicio");
-
         }
     }
 }
