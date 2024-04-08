@@ -1,0 +1,26 @@
+﻿@model AutentificacionAutorizacion.Models.UsuarioDTO
+
+@{
+    ViewBag.Title = "Eliminar Usuario";
+}
+
+<h2>Eliminar Usuario</h2>
+
+<div>
+    <h4>¿Está seguro que desea eliminar este usuario?</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <!-- Resto de campos para mostrar -->
+    </dl>
+    <form action="@Url.Action("ConfirmarEliminar", new { id = Model.IdUsuario })" method="post">
+        @Html.AntiForgeryToken()
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
+    </form>
+</div>
