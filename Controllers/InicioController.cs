@@ -42,11 +42,6 @@ namespace AutentificacionAutorizacion.Controllers
                         Session["usuario"] = usuario;
                         return RedirectToAction("Index", "Admin");
                     }
-                    if(rol == 3)
-                    {
-                        Session["usuario"] = usuario;
-                        return RedirectToAction("Index", "Invitado");
-                    }
                     else
                     {
                         Session["usuario"] = usuario;

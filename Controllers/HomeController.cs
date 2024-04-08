@@ -34,8 +34,7 @@ namespace AutentificacionAutorizacion.Controllers
 
         public ActionResult CerrarSesion()
         {
-            ViewBag.Message = "Your contact page.";
-
+            Session["rol"] = null;
             Session["usuario"] = null;
             return RedirectToAction("Login", "Inicio");
 
