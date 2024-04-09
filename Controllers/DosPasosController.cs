@@ -30,9 +30,12 @@ namespace AutentificacionAutorizacion.Controllers
         [HttpPost]
         public ActionResult VerificarToken(string token, UsuarioDTO usuario, string tokenEnviado)
         {
+            var u = (UsuarioDTO)Session["usuario"];
+
             if (string.Equals(tokenEnviado, token, StringComparison.OrdinalIgnoreCase))
             {
-                //Session["usuario"] = usuario;
+
+                Session["usuario"] = u;
                 return RedirectToAction("Index", "Home");
             }
             else
