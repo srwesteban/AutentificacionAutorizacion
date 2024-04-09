@@ -44,8 +44,18 @@ namespace AutentificacionAutorizacion.Controllers
                     }
                     else
                     {
+                        CorreoDTO correoDTO = new CorreoDTO()
+                        {
+                            Para = correo,
+                            Asunto = "Token de seguridad"
+                        };
+
+                        string tokenEnviado = CorreoServicio.EnviarToken(correoDTO);
                         Session["usuario"] = usuario;
-                        return RedirectToAction("Index", "Home");
+                        Session["tokenEnviado"] = tokenEnviado;
+                        return RedirectToAction("Index", "DosPasos");
+                        //return RedirectToAction("Index", "Home");
+
                     }
                 }
 
@@ -102,18 +112,12 @@ namespace AutentificacionAutorizacion.Controllers
                     ViewBag.Mensaje = $"Su cuenta ha sido creada. Hemos enviado un mensaje al correo {usuario.Correo} para confirmar su cuenta";
 
                     UsuarioDTO usuarioCreado = DBUsuario.Obtener(usuario.Correo);
-
                     UsuariosRolesActor.CrearRegistro(usuarioCreado);
-
-
-
                 }
                 else
                 {
                     ViewBag.Mensaje = "No se pudo crear su cuenta";
                 }
-
-
 
             }
             else
