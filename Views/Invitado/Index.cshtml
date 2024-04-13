@@ -1,44 +1,84 @@
-﻿@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitado</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .container {
-            margin-top: 50px;
-        }
-
-        .jumbotron {
-            padding: 20px;
-        }
-
-        .btn-custom {
-            background-color: #007bff;
-            color: #fff;
-        }
-    </style>
+    <title>Mapa</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link href="~/Estilos/Map.css" rel="stylesheet" />
 </head>
 <body>
-
-    <div class="container">
-        <div class="jumbotron">
-            <h1 class="display-4">¡Bienvenido!</h1>
-            <p class="lead">Has ingresado como invitado.</p>
-            <hr class="my-4">
-            <p>Como invitado, puedes explorar nuestro sitio, pero algunas funciones pueden estar limitadas.</p>
-            <a class="btn btn-custom btn-lg" href="@Url.Action("Index", "Invitado")" role="button">Explorar</a>
-        </div>
+    <div id="map" class="relative w-full h-screen mb-10 max-h-[80vh] z-0"></div>
+    <div class="modal-footer">
+        <form id="searchForm">
+            <label for="coordsInput">Ingrese las coordenadas (latitud, longitud):</label><br>
+            <div class="input-container">
+                <input type="text" id="coordsInput" name="coords" placeholder="    Ejemplo: 1.2136,-77.2811" required>
+                <button type="submit">Buscar</button>
+            </div>
+        </form>
     </div>
 
+    <script>
+        const iconMascota = L.icon({
+            iconUrl: "/Estilos/Imagenes/ImagenesMapa/feliz.png",
+            iconSize: [30, 30],
+            iconAnchor: [15, 30]
+        });
+
+        const iconPersona = L.icon({
+            iconUrl: "/Estilos/Imagenes/imagenesMapa/persona.png",
+            iconSize: [30, 30],
+            iconAnchor: [15, 30]
+        });
+
+        const map = L.map('map').setView([1.2136, -77.2811], 16);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        let userLocation = null;
+        let petMarker = null;
+
+        function agregarMarcador(lat, lng, icon) {
+            return L.marker([lat, lng], { icon }).addTo(map);
+        }
+
+        function actualizarUbicacionPersona(position) {
+            const { latitude: lat, longitude: lng } = position.coords;
+            if (userLocation) {
+                map.removeLayer(userLocation);
+            }
+            userLocation = agregarMarcador(lat, lng, iconPersona);
+        }
+
+        function errorUbicacionPersona(error) {
+            console.error('Error al obtener la ubicación del usuario:', error.message);
+        }
+
+        if (navigator.geolocation) {
+            navigator.geolocation.watchPosition(actualizarUbicacionPersona, errorUbicacionPersona);
+        } else {
+            console.error('El navegador no soporta geolocalización.');
+        }
+
+        document.getElementById('searchForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const coords = document.getElementById('coordsInput').value.trim();
+            const latLng = coords.split(',').map(coord => parseFloat(coord.trim()));
+            if (latLng.length === 2 && !isNaN(latLng[0]) && !isNaN(latLng[1])) {
+                const [lat, lng] = latLng;
+                map.setView([lat, lng], 13);
+                if (petMarker) {
+                    map.removeLayer(petMarker);
+                }
+                petMarker = agregarMarcador(lat, lng, iconMascota);
+            } else {
+                alert('Coordenadas no válidas. Por favor, ingrese números válidos.');
+            }
+        });
+        petMarker = agregarMarcador(1.22, -77.29, iconMascota);
+    </script>
 </body>
 </html>

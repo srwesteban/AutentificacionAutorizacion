@@ -11,7 +11,7 @@ namespace AutentificacionAutorizacion.ViewModels
     public class VerificacionViewModel
     {
 
-        public UsuarioDTO Usuario { get; set; }
+        public Usuario Usuario { get; set; }
 
         public string tokenEnviado { get; set; }
 

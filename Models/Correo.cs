@@ -5,7 +5,7 @@ using System.Web;
 
 namespace AutentificacionAutorizacion.Models
 {
-    public class CorreoDTO
+    public class Correo
     {
         public string Para { get; set; }
         public string Asunto { get; set; }

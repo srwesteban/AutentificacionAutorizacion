@@ -1,0 +1,55 @@
+﻿
+#map {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 55px;
+    left: 0;
+}
+
+.leaflet-control-zoom-in, .leaflet-control-zoom-out {
+    width: 60px !important;
+    height: 60px !important;
+    line-height: 40px !important;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #000;
+    font-size: 100px;
+}
+
+.modal-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background-color: #000000;
+    padding: 0px;
+    box-sizing: border-box;
+    z-index: 1000;
+    color: white;
+    text-align: center !important;
+    justify-content: center;
+    font-size: 18px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    padding-bottom: 40px;
+}
+
+    .modal-footer button {
+        width: 100px;
+        height: 50px;
+        border: 1px solid black;
+        border-radius: 15px;
+        background-color: #acf29f;
+        color: #808080;
+        font-weight: bold;
+    }
+
+    .modal-footer input {
+        width: 250px;
+        height: 50px;
+        border: 1px solid black;
+        border-radius: 15px;
+    }

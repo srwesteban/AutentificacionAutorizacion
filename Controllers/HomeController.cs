@@ -13,7 +13,7 @@ namespace AutentificacionAutorizacion.Controllers
         [ValidarSesion]
         public ActionResult Index()
         {
-            UsuarioDTO usuario = (UsuarioDTO)Session["usuario"];
+            Usuario usuario = (Usuario)Session["usuario"];
             ViewBag.Usuario = usuario;
             return View();
         }

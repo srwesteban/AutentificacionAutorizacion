@@ -13,7 +13,7 @@ namespace AutentificacionAutorizacion.Controllers
     {
         public ActionResult Index()
         {
-            List<UsuarioDTO> usuarios = DBUsuario.ListarUsuarios();
+            List<Usuario> usuarios = DBUsuario.ListarUsuarios();
             return View(usuarios);
         }
 
@@ -23,7 +23,7 @@ namespace AutentificacionAutorizacion.Controllers
         }
 
         [HttpPost]
-        public ActionResult Crear(UsuarioDTO usuario)
+        public ActionResult Crear(Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -42,7 +42,7 @@ namespace AutentificacionAutorizacion.Controllers
 
         public ActionResult Editar(int id)
         {
-            UsuarioDTO usuario = DBUsuario.ObtenerPorId(id);
+            Usuario usuario = DBUsuario.ObtenerPorId(id);
             if (usuario == null)
             {
                 return HttpNotFound();
@@ -51,7 +51,7 @@ namespace AutentificacionAutorizacion.Controllers
         }
 
         [HttpPost]
-        public ActionResult Editar(UsuarioDTO usuario)
+        public ActionResult Editar(Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -70,7 +70,7 @@ namespace AutentificacionAutorizacion.Controllers
 
         public ActionResult Eliminar(int id)
         {
-            UsuarioDTO usuario = DBUsuario.ObtenerPorId(id);
+            Usuario usuario = DBUsuario.ObtenerPorId(id);
             if (usuario == null)
             {
                 return HttpNotFound();
@@ -89,7 +89,7 @@ namespace AutentificacionAutorizacion.Controllers
             else
             {
                 ViewBag.Error = "Error al eliminar el usuario";
-                return View("Eliminar", new UsuarioDTO { IdUsuario = id });
+                return View("Eliminar", new Usuario { IdUsuario = id });
             }
         }
     }

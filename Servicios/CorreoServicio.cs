@@ -17,13 +17,13 @@ namespace AutentificacionAutorizacion.Servicios
         private static string _Host = "smtp.gmail.com";
         private static int _Puerto = 587;
 
-        private static string _NombreEnvia = "PetMap";
+        private static string _NombreEnvia = "William";
         private static string _Correo = "sr.westeban@gmail.com";
         private static string _Clave = "pslkleyhfgxllmmv";
         private static Random random = new Random();
 
 
-        public static bool Enviar(CorreoDTO correodto)
+        public static bool Enviar(Correo correodto)
         {
             try
             {
@@ -51,8 +51,6 @@ namespace AutentificacionAutorizacion.Servicios
             }
         }
 
-
-
         public static string GenerarToken()
         {
             const int longitudToken = 6;
@@ -65,7 +63,7 @@ namespace AutentificacionAutorizacion.Servicios
             return new string(token);
         }
 
-        public static string EnviarToken(CorreoDTO correodto)
+        public static string EnviarToken(Correo correodto)
         {
             try
             {

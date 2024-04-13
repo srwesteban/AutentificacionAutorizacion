@@ -1,0 +1,19 @@
+﻿.titulo {
+    margin-top: 100px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.card-img-top {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .titulo {
+        margin-top: 50px;
+    }
+}
