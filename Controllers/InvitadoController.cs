@@ -13,5 +13,10 @@ namespace AutentificacionAutorizacion.Controllers
         {
             return View();
         }
+
+        public ActionResult Salir()
+        {
+            return RedirectToAction("Login", "Inicio");
+        }
     }
 }
