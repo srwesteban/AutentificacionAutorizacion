@@ -50,10 +50,17 @@
                 map.removeLayer(userLocation);
             }
             userLocation = agregarMarcador(lat, lng, iconPersona);
+            ajustarVistaMapa();
         }
 
         function errorUbicacionPersona(error) {
             console.error('Error al obtener la ubicación del usuario:', error.message);
+        }
+
+        function ajustarVistaMapa() {
+            const markers = [userLocation, petMarker].filter(marker => marker !== null);
+            const group = new L.featureGroup(markers);
+            map.fitBounds(group.getBounds());
         }
 
         if (navigator.geolocation) {
@@ -73,11 +80,13 @@
                     map.removeLayer(petMarker);
                 }
                 petMarker = agregarMarcador(lat, lng, iconMascota);
+                ajustarVistaMapa();
             } else {
                 alert('Coordenadas no válidas. Por favor, ingrese números válidos.');
             }
         });
         petMarker = agregarMarcador(1.22, -77.29, iconMascota);
+        ajustarVistaMapa();
     </script>
 </body>
 </html>
