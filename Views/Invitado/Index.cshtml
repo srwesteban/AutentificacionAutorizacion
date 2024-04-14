@@ -5,7 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3/dist/leaflet-routing-machine.css" />
+    <style>
+        .leaflet-marker-icon[src*='feliz'],
+        .leaflet-marker-icon[src*='persona'] {
+            display: block !important;
+        }
+
+        .leaflet-marker-icon {
+            display: none !important;
+        }
+        .leaflet-routing-container {
+            display: none !important;
+        }
+    </style>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@3/dist/leaflet-routing-machine.js"></script>
     <link href="~/Estilos/Map.css" rel="stylesheet" />
 </head>
 <body>
@@ -39,6 +54,7 @@
 
         let userLocation = null;
         let petMarker = null;
+        let routingControl = null;
 
         function agregarMarcador(lat, lng, icon) {
             return L.marker([lat, lng], { icon }).addTo(map);
@@ -63,6 +79,26 @@
             map.fitBounds(group.getBounds());
         }
 
+        function calcularRuta() {
+            if (userLocation && petMarker) {
+                if (routingControl !== null) {
+                    map.removeControl(routingControl);
+                }
+                routingControl = L.Routing.control({
+                    waypoints: [
+                        L.latLng(userLocation.getLatLng().lat, userLocation.getLatLng().lng),
+                        L.latLng(petMarker.getLatLng().lat, petMarker.getLatLng().lng)
+                    ],
+                    routeWhileDragging: true,
+                    zIndex: 1
+                }).addTo(map);
+            }
+        }
+
+        function calcularRutaManual() {
+            calcularRuta();
+        }
+
         if (navigator.geolocation) {
             navigator.geolocation.watchPosition(actualizarUbicacionPersona, errorUbicacionPersona);
         } else {
@@ -81,6 +117,7 @@
                 }
                 petMarker = agregarMarcador(lat, lng, iconMascota);
                 ajustarVistaMapa();
+                calcularRuta();
             } else {
                 alert('Coordenadas no válidas. Por favor, ingrese números válidos.');
             }
