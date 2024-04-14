@@ -11,6 +11,8 @@ namespace AutentificacionAutorizacion.Controllers
         // GET: Invitado
         public ActionResult Index()
         {
+            Session["rol"] = null;
+            Session["usuario"] = null;
             return View();
         }
 

@@ -1,63 +1,122 @@
-﻿@model AutentificacionAutorizacion.Models.UsuarioDTO
+﻿@model AutentificacionAutorizacion.Models.Usuario
 
 @{
     ViewBag.Title = "Editar Usuario";
 }
-
-<h2>Editar Usuario</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Nombre)
-        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Correo)
-        @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Clave)
-        @Html.EditorFor(model => model.Clave, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Clave, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Restablecer)
-        <div class="form-check">
-            @Html.CheckBoxFor(model => model.Restablecer, new { @class = "form-check-input" })
-            @Html.LabelFor(model => model.Restablecer, new { @class = "form-check-label" })
-        </div>
-        @Html.ValidationMessageFor(model => model.Restablecer, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Confirmado)
-        <div class="form-check">
-            @Html.CheckBoxFor(model => model.Confirmado, new { @class = "form-check-input" })
-            @Html.LabelFor(model => model.Confirmado, new { @class = "form-check-label" })
-        </div>
-        @Html.ValidationMessageFor(model => model.Confirmado, "", new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Token)
-        @Html.EditorFor(model => model.Token, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Token, "", new { @class = "text-danger" })
-    </div>
-
-    <!-- Agregar más campos para editar aquí -->
-
-    <div class="form-group">
-        <input type="submit" value="Editar" class="btn btn-primary" />
-    </div>
+@{
+    Layout = null;
 }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-<div>
-    @Html.ActionLink("Volver a la Lista", "Index")
-</div>
+        .container {
+            max-width: 400px;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-check {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            width: 100%;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Editar Usuario</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nombre)
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Correo)
+                @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Clave)
+                @Html.EditorFor(model => model.Clave, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Clave, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Restablecer)
+                <div class="form-check">
+                    @Html.CheckBoxFor(model => model.Restablecer, new { @class = "form-check-input" })
+                    @Html.LabelFor(model => model.Restablecer, new { @class = "form-check-label" })
+                </div>
+                @Html.ValidationMessageFor(model => model.Restablecer, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Confirmado)
+                <div class="form-check">
+                    @Html.CheckBoxFor(model => model.Confirmado, new { @class = "form-check-input" })
+                    @Html.LabelFor(model => model.Confirmado, new { @class = "form-check-label" })
+                </div>
+                @Html.ValidationMessageFor(model => model.Confirmado, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Token)
+                @Html.EditorFor(model => model.Token, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Token, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Editar" class="btn btn-primary" />
+            </div>
+        }
+
+        <div class="back-link">
+            @Html.ActionLink("Volver a la Lista", "Index")
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
