@@ -50,9 +50,9 @@ namespace AutentificacionAutorizacion.Controllers
                             Asunto = "Token de seguridad"
                         };
 
-                        string tokenEnviado = CorreoServicio.EnviarToken(correoDTO);
+                        //string tokenEnviado = CorreoServicio.EnviarToken(correoDTO);
                         Session["usuario"] = usuario;
-                        Session["tokenEnviado"] = tokenEnviado;
+                        //Session["tokenEnviado"] = tokenEnviado;
                         return RedirectToAction("Index", "DosPasos");
                         //return RedirectToAction("Index", "Home");
 
