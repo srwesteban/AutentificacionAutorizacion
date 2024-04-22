@@ -234,7 +234,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\j.cshtml" />
+    <Content Include="Views\Home\Map.cshtml" />
     <Content Include="Views\Inicio\Actualizar.cshtml" />
     <Content Include="Views\Inicio\Confirmar.cshtml" />
     <Content Include="Views\Inicio\Login.cshtml" />

@@ -15,7 +15,7 @@ namespace AutentificacionAutorizacion.Controllers
         {
             Usuario usuario = (Usuario)Session["usuario"];
             ViewBag.Usuario = usuario;
-            return View("Mapa");
+            return View("Map");
         }
 
         public ActionResult About()
