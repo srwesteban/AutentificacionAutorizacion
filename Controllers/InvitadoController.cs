@@ -13,7 +13,7 @@ namespace AutentificacionAutorizacion.Controllers
         {
             Session["rol"] = null;
             Session["usuario"] = null;
-            return View();
+            return View("MapaInvitado");
         }
 
         public ActionResult Salir()

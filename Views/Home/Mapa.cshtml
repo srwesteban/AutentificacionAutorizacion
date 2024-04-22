@@ -1,0 +1,134 @@
+﻿@model AutentificacionAutorizacion.Models.Usuario
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Mapa</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3/dist/leaflet-routing-machine.css" />
+    <style>
+        .leaflet-marker-icon[src*='feliz'],
+        .leaflet-marker-icon[src*='persona'] {
+            display: block !important;
+        }
+
+        .leaflet-marker-icon {
+            display: none !important;
+        }
+
+        .leaflet-routing-container {
+            display: none !important;
+        }
+    </style>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@3/dist/leaflet-routing-machine.js"></script>
+    <link href="~/Estilos/Map.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="map" class="relative w-full h-screen mb-10 max-h-[80vh] z-0"></div>
+    <div class="modal-footer">
+        <form id="searchForm">
+            <label for="coordsInput">Ingrese las coordenadas (latitud, longitud):</label><br>
+            <div class="input-container">
+                <input type="text" id="coordsInput" name="coords" placeholder="    Ejemplo:1.2136,-77.2811" required>
+                <button type="submit">Buscar</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        const iconMascota = L.icon({
+            iconUrl: "/Estilos/Imagenes/ImagenesMapa/feliz.png",
+            iconSize: [30, 30],
+            iconAnchor: [15, 30]
+        });
+
+        const iconPersona = L.icon({
+            iconUrl: "/Estilos/Imagenes/imagenesMapa/persona.png",
+            iconSize: [30, 30],
+            iconAnchor: [15, 30]
+        });
+
+        const map = L.map('map').setView([1.2136, -77.2811], 16);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        let userLocation = null;
+        let petMarker = null;
+        let routingControl = null;
+
+        function agregarMarcador(lat, lng, icon) {
+            return L.marker([lat, lng], { icon }).addTo(map);
+        }
+
+        function actualizarUbicacionPersona(position) {
+            const { latitude: lat, longitude: lng } = position.coords;
+            if (userLocation) {
+                map.removeLayer(userLocation);
+            }
+            userLocation = agregarMarcador(lat, lng, iconPersona);
+            ajustarVistaMapa();
+        }
+
+        function errorUbicacionPersona(error) {
+            console.error('Error al obtener la ubicación del usuario:', error.message);
+        }
+
+        function ajustarVistaMapa() {
+            const markers = [userLocation, petMarker].filter(marker => marker !== null);
+            const group = new L.featureGroup(markers);
+            map.fitBounds(group.getBounds(), { paddingBottomRight: [100, 100] });
+        }
+
+        function calcularRuta() {
+            if (userLocation && petMarker) {
+                if (routingControl !== null) {
+                    map.removeControl(routingControl);
+                }
+                routingControl = L.Routing.control({
+                    waypoints: [
+                        L.latLng(userLocation.getLatLng().lat, userLocation.getLatLng().lng),
+                        L.latLng(petMarker.getLatLng().lat, petMarker.getLatLng().lng)
+                    ],
+                    routeWhileDragging: true,
+                    profile: 'foot',
+                    zIndex: 1
+                }).addTo(map);
+            }
+        }
+
+        function calcularRutaManual() {
+            calcularRuta();
+        }
+
+        if (navigator.geolocation) {
+            navigator.geolocation.watchPosition(actualizarUbicacionPersona, errorUbicacionPersona);
+        } else {
+            console.error('El navegador no soporta geolocalización.');
+        }
+
+        document.getElementById('searchForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const coords = document.getElementById('coordsInput').value.trim();
+            const latLng = coords.split(',').map(coord => parseFloat(coord.trim()));
+            if (latLng.length === 2 && !isNaN(latLng[0]) && !isNaN(latLng[1])) {
+                const [lat, lng] = latLng;
+                map.setView([lat, lng], 13);
+                if (petMarker) {
+                    map.removeLayer(petMarker);
+                }
+                petMarker = agregarMarcador(lat, lng, iconMascota);
+                calcularRuta();
+                ajustarVistaMapa();
+
+            } else {
+                ajustarVistaMapa();
+                alert('Coordenadas no válidas. Por favor, ingrese números válidos.');
+            }
+        });
+        petMarker = agregarMarcador(1.22, -77.29, iconMascota);
+        ajustarVistaMapa();
+    </script>
+</body>
+</html>

@@ -234,13 +234,13 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\j.cshtml" />
     <Content Include="Views\Inicio\Actualizar.cshtml" />
     <Content Include="Views\Inicio\Confirmar.cshtml" />
     <Content Include="Views\Inicio\Login.cshtml" />
     <Content Include="Views\Inicio\Registrar.cshtml" />
     <Content Include="Views\Inicio\Restablecer.cshtml" />
-    <Content Include="Views\Invitado\Index.cshtml" />
+    <Content Include="Views\Invitado\MapaInivtado.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Crear.cshtml" />
     <Content Include="Views\Admin\Editar.cshtml" />
