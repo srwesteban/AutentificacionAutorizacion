@@ -39,10 +39,14 @@ namespace AutentificacionAutorizacion.Controllers
             return RedirectToAction("Login", "Inicio");
         }
 
-        public ActionResult GuardarRegistro()
+        [HttpPost]
+        public ActionResult GuardarRegistro(string id, string coords)
         {
+            Console.WriteLine(coords);
+            Console.WriteLine(id);
 
-            return View("Map");
+            return Json(new { success = true, message = "Registro guardado exitosamente" });
         }
+
     }
 }

@@ -75,7 +75,7 @@
         function ajustarVistaMapa() {
             const markers = [userLocation, petMarker].filter(marker => marker !== null);
             const group = new L.featureGroup(markers);
-            map.fitBounds(group.getBounds(), { paddingBottomRight: [100, 100] }); 
+            map.fitBounds(group.getBounds(), { paddingBottomRight: [100, 100] });
         }
 
         function calcularRuta() {
@@ -99,11 +99,34 @@
         }
 
         function GuardarRegistro(coords) {
-            //alert("sdfsd")
-            var usuario = @Html.Raw(Json.Encode(ViewBag.Usuario));
-            console.log(usuario);
-            var url = '@Url.Action("GuardarRegistro", "Home")' + '?coords=' + encodeURIComponent(coords);
+            var id = @Html.Raw(Json.Encode(ViewBag.Usuario.IdUsuario));
+            console.log(id);
+
+            var datos = {
+                id: id,
+                coords: coords
+            };
+
+            var xhr = new XMLHttpRequest();
+            var url = '@Url.Action("GuardarRegistro", "Home")';
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        console.log("Registro guardado con éxito");
+                    } else {
+                        console.error("Error al intentar guardar el registro:", xhr.statusText);
+                    }
+                }
+            };
+
+            xhr.send(JSON.stringify(datos));
         }
+
+
+
 
 
         if (navigator.geolocation) {
