@@ -20,7 +20,7 @@ namespace AutentificacionAutorizacion.Controllers
         [HttpPost]
         public ActionResult Login(string correo, string clave)
         {
-            Usuario usuario = DBUsuario.Validar(correo, UtilidadServicio.ConvertirSHA256(clave));
+            UsuarioDTO usuario = DBUsuario.Validar(correo, UtilidadServicio.ConvertirSHA256(clave));
 
             if (usuario != null)
             {
@@ -74,7 +74,7 @@ namespace AutentificacionAutorizacion.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Registrar(Usuario usuario)
+        public ActionResult Registrar(UsuarioDTO usuario)
         {
             if (usuario.Clave != usuario.ConfirmarClave)
             {
@@ -100,7 +100,7 @@ namespace AutentificacionAutorizacion.Controllers
 
                     string htmlBody = string.Format(content, usuario.Nombre, url);
 
-                    Correo correoDTO = new Correo()
+                    CorreoDTO correoDTO = new CorreoDTO()
                     {
                         Para = usuario.Correo,
                         Asunto = "Correo confirmacion",
@@ -111,13 +111,19 @@ namespace AutentificacionAutorizacion.Controllers
                     ViewBag.Creado = true;
                     ViewBag.Mensaje = $"Su cuenta ha sido creada. Hemos enviado un mensaje al correo {usuario.Correo} para confirmar su cuenta";
 
-                    Usuario usuarioCreado = DBUsuario.Obtener(usuario.Correo);
+                    UsuarioDTO usuarioCreado = DBUsuario.Obtener(usuario.Correo);
+
                     UsuariosRolesActor.CrearRegistro(usuarioCreado);
+
+
+
                 }
                 else
                 {
                     ViewBag.Mensaje = "No se pudo crear su cuenta";
                 }
+
+
 
             }
             else
@@ -142,7 +148,7 @@ namespace AutentificacionAutorizacion.Controllers
         [HttpPost]
         public ActionResult Restablecer(string correo)
         {
-            Usuario usuario = DBUsuario.Obtener(correo);
+            UsuarioDTO usuario = DBUsuario.Obtener(correo);
             ViewBag.Correo = correo;
             if (usuario != null)
             {
@@ -156,7 +162,7 @@ namespace AutentificacionAutorizacion.Controllers
 
                     string htmlBody = string.Format(content, usuario.Nombre, url);
 
-                    Correo correoDTO = new Correo()
+                    CorreoDTO correoDTO = new CorreoDTO()
                     {
                         Para = correo,
                         Asunto = "Restablecer cuenta",
