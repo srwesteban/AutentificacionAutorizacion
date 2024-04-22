@@ -53,8 +53,8 @@ namespace AutentificacionAutorizacion.Controllers
                         //string tokenEnviado = CorreoServicio.EnviarToken(correoDTO);
                         Session["usuario"] = usuario;
                         //Session["tokenEnviado"] = tokenEnviado;
-                        return RedirectToAction("Index", "DosPasos");
-                        //return RedirectToAction("Index", "Home");
+                        //return RedirectToAction("Index", "DosPasos");
+                        return RedirectToAction("Index", "Home");
 
                     }
                 }
