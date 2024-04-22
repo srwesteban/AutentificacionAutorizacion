@@ -11,11 +11,9 @@
         .leaflet-marker-icon[src*='persona'] {
             display: block !important;
         }
-
         .leaflet-marker-icon {
             display: none !important;
         }
-
         .leaflet-routing-container {
             display: none !important;
         }
@@ -77,7 +75,7 @@
         function ajustarVistaMapa() {
             const markers = [userLocation, petMarker].filter(marker => marker !== null);
             const group = new L.featureGroup(markers);
-            map.fitBounds(group.getBounds());
+            map.fitBounds(group.getBounds(), { paddingBottomRight: [100, 100] }); 
         }
 
         function calcularRuta() {
@@ -100,6 +98,14 @@
             calcularRuta();
         }
 
+        function GuardarRegistro(coords) {
+            //alert("sdfsd")
+            var usuario = @Html.Raw(Json.Encode(ViewBag.Usuario));
+            console.log(usuario);
+            var url = '@Url.Action("GuardarRegistro", "Home")' + '?coords=' + encodeURIComponent(coords);
+        }
+
+
         if (navigator.geolocation) {
             navigator.geolocation.watchPosition(actualizarUbicacionPersona, errorUbicacionPersona);
         } else {
@@ -117,6 +123,7 @@
                     map.removeLayer(petMarker);
                 }
                 petMarker = agregarMarcador(lat, lng, iconMascota);
+                GuardarRegistro(coords);
                 ajustarVistaMapa();
                 calcularRuta();
             } else {

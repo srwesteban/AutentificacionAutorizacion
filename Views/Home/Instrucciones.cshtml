@@ -1,0 +1,56 @@
+﻿@{
+    var title = "Instrucciones de Uso";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@title</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <link href="~/Estilos/Instrucciones.css" rel="stylesheet" />
+</head>
+<body>
+    <h2 class="titulo">@title</h2>
+    <div class="container mt-lg-2 main-content">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card step bg-light mb-4">
+                    <div class="card-body">
+                        <h3 class="card-title">1. Encender el Dispositivo</h3>
+                        <p class="card-text">Localiza el interruptor de encendido/apagado en el dispositivo.</p>
+                    </div>
+                    <img src="~/Images/Logos/logopetmap.png" class="card-img-top" alt="Encender el Dispositivo">
+                </div>
+                <div class="card step bg-light">
+                    <div class="card-body">
+                        <h3 class="card-title">3. Insertar la Tarjeta SIM</h3>
+                        <p class="card-text">Abre la cubierta que protege el espacio para la tarjeta SIM.</p>
+                    </div>
+                    <img src="~/Images/Logos/logopetmap.png" class="card-img-top" alt="Insertar la Tarjeta SIM">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card step bg-light mb-4">
+                    <div class="card-body">
+                        <h3 class="card-title">2. Verificar la Disponibilidad</h3>
+                        <p class="card-text">Observa las luces indicadoras. Si las luces rojas parpadean, significa que el dispositivo está listo para su uso.</p>
+                    </div>
+                    <img src="~/Images/Logos/logopetmap.png" class="card-img-top" alt="Verificar la Disponibilidad">
+                </div>
+                <div class="card step bg-light">
+                    <div class="card-body">
+                        <h3 class="card-title">4. Asegurar Crédito o Paquete de Datos en la Tarjeta SIM</h3>
+                        <p class="card-text">Asegúrate de que la tarjeta SIM tenga crédito o un paquete de datos y SMS activo.</p>
+                    </div>
+                    <img src="~/Images/Logos/logopetmap.png" class="card-img-top" alt="Asegurar Crédito o Paquete de Datos">
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>¡Listo! Ahora puedes utilizar el Rastreador de Mascotas PetMap para mantener a tu mascota segura y localizable en todo momento. ¡Diviértete explorando las aventuras de tu peludo amigo!</p>
+    </footer>
+</body>
+</html>

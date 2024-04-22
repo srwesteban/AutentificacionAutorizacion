@@ -1,6 +1,4 @@
-﻿@model AutentificacionAutorizacion.Models.Usuario
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -39,17 +37,15 @@
                     @if (ViewBag.Usuario != null)
                     {
                         <li class="nav-item" style="display: flex; align-items: center; font-size: large">
-                            <span class="badge badge-pill badge-light mr-2">@ViewBag.Usuario.Nombre</span>
+                            <span class="badge badge-pill badge-light mr-2">Bienvenido!! @ViewBag.Usuario.Nombre</span>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("About", "Home")">Instrucciones</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Contact", "Home")">Contacto</a>
+                            <a class="nav-link" href="@Url.Action("Instrucciones", "Home")">Instrucciones</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Contact", "Home")">Contacto</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("CerrarSesion", "Home")">Cerrar Sesión</a>
                         </li>
@@ -74,9 +70,5 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        var usuario = @Html.Raw(Json.Encode(ViewBag.Usuario));
-        console.log(usuario);
-    </script>
 </body>
 </html>

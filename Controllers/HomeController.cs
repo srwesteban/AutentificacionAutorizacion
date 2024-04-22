@@ -18,7 +18,7 @@ namespace AutentificacionAutorizacion.Controllers
             return View("Map");
         }
 
-        public ActionResult About()
+        public ActionResult Instrucciones()
         {
             ViewBag.Message = "Your application description page.";
 
@@ -37,6 +37,12 @@ namespace AutentificacionAutorizacion.Controllers
             Session["rol"] = null;
             Session["usuario"] = null;
             return RedirectToAction("Login", "Inicio");
+        }
+
+        public ActionResult GuardarRegistro()
+        {
+
+            return View("Map");
         }
     }
 }
