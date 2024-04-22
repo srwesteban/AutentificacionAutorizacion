@@ -49,13 +49,13 @@ namespace AutentificacionAutorizacion.Controllers
                             Para = correo,
                             Asunto = "Token de seguridad"
                         };
+                        Console.WriteLine("kjkj");
 
                         //string tokenEnviado = CorreoServicio.EnviarToken(correoDTO);
                         Session["usuario"] = usuario;
                         //Session["tokenEnviado"] = tokenEnviado;
                         //return RedirectToAction("Index", "DosPasos");
                         return RedirectToAction("Index", "Home");
-
                     }
                 }
 
