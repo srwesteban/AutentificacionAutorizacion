@@ -18,6 +18,7 @@
     font-size: 100px;
 }
 
+
 .modal-footer {
     position: absolute;
     bottom: 0;
@@ -53,3 +54,14 @@
         border-radius: 15px;
         padding: 15px;
     }
+
+
+@media screen and (max-width: 768px) {
+
+    .modal-footer {
+        font-size: 15px;
+    }
+    .leaflet-control{
+        display: none !important;
+    }
+}

@@ -11,16 +11,22 @@
         .leaflet-marker-icon[src*='persona'] {
             display: block !important;
         }
+
         .leaflet-marker-icon {
             display: none !important;
         }
+
         .leaflet-routing-container {
             display: none !important;
         }
+        .leaflet-control-zoom-in, .leaflet-control-zoom-out {
+            display: none !important;
+        }
+
     </style>
+    <link href="~/Estilos/Map.css" rel="stylesheet" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="https://unpkg.com/leaflet-routing-machine@3/dist/leaflet-routing-machine.js"></script>
-    <link href="~/Estilos/Map.css" rel="stylesheet" />
 </head>
 <body>
     <div id="map" class="relative w-full h-screen mb-10 max-h-[80vh] z-0">
@@ -66,7 +72,6 @@
                 map.removeLayer(userLocation);
             }
             userLocation = agregarMarcador(lat, lng, iconPersona);
-            ajustarVistaMapa();
         }
 
         function errorUbicacionPersona(error) {
@@ -125,9 +130,6 @@
 
             xhr.send(JSON.stringify(datos));
         }
-
-
-
 
 
         if (navigator.geolocation) {

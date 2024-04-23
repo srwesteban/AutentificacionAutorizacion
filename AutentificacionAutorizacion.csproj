@@ -242,7 +242,7 @@
     <Content Include="Views\Inicio\Login.cshtml" />
     <Content Include="Views\Inicio\Registrar.cshtml" />
     <Content Include="Views\Inicio\Restablecer.cshtml" />
-    <Content Include="Views\Invitado\MapaInivtado.cshtml" />
+    <Content Include="Views\Invitado\MapInvitado.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Crear.cshtml" />
     <Content Include="Views\Admin\Editar.cshtml" />
