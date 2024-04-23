@@ -77,6 +77,7 @@
         function errorUbicacionPersona(error) {
             console.error('Error al obtener la ubicación del usuario:', error.message);
         }
+        // ajustar vista
 
         function ajustarVistaMapa() {
             const markers = [userLocation, petMarker].filter(marker => marker !== null);
@@ -98,10 +99,6 @@
                     zIndex: 1
                 }).addTo(map);
             }
-        }
-
-        function calcularRutaManual() {
-            calcularRuta();
         }
 
         function GuardarRegistro(coords) {
@@ -127,7 +124,6 @@
                     }
                 }
             };
-
             xhr.send(JSON.stringify(datos));
         }
 
@@ -156,6 +152,7 @@
                 alert('Coordenadas no válidas. Por favor, ingrese números válidos.');
             }
         });
+        // ubicacion mascota por default
         petMarker = agregarMarcador(1.22, -77.29, iconMascota);
         ajustarVistaMapa();
     </script>

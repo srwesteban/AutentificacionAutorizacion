@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Map</title>
+    <title>PetMap</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Estilos/Layout.css" />
     <style>
-        .navegador {
+        .navegador {  
             background-color: #000;
             color: #fff;
         }
@@ -76,5 +77,21 @@
 
     @RenderSection("Scripts", required: false)
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const navbarToggle = document.querySelector(".navbar-toggler");
+    const navbarCollapse = document.querySelector(".navbar-collapse");
+    navbarToggle.addEventListener("click", function () {
+    navbarCollapse.classList.toggle("show");
+    });
+    navbarCollapse.addEventListener("click", function (event) {
+    if (event.target.tagName === "A") {
+    navbarCollapse.classList.remove("show");
+    }
+    });
+    });
+    </script>
 </body>
+
 </html>
