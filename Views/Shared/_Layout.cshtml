@@ -6,7 +6,7 @@
     <title>Map</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
+        .navegador {
             background-color: #000;
             color: #fff;
         }
@@ -14,16 +14,19 @@
             background-color: black;
             color: white;
             padding: 0px;
+            border-bottom: 1px solid grey;
         }
+
         .navbar-brand {
             margin-right: auto;
         }
+
         .navbar-nav {
             margin-left: auto;
         }
     </style>
 </head>
-<body>
+<body class="navegador">
     <nav class="navbar navbar-expand-md navbar-dark bg-black fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="@Url.Action("Index", "Home")">
@@ -43,9 +46,11 @@
                             <a class="nav-link" href="@Url.Action("Instrucciones", "Home")">Instrucciones</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Historial", "Home", new { id = @ViewBag.Usuario.IdUsuario })">Historial</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Contact", "Home")">Contacto</a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("CerrarSesion", "Home")">Cerrar Sesión</a>
                         </li>
@@ -68,7 +73,8 @@
     <div class="container mt-5">
         @RenderBody()
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

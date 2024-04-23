@@ -162,8 +162,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Correo.cs" />
+    <Compile Include="Models\Registro.cs" />
     <Compile Include="Models\Rol.cs" />
     <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Negocio\RegistrosActor.cs" />
     <Compile Include="Negocio\UsuariosRolesActor.cs" />
     <Compile Include="Negocio\UsuarioActor.cs" />
     <Compile Include="Permisos\AdminSesionAttribute.cs" />
@@ -246,6 +248,7 @@
     <Content Include="Views\Admin\Editar.cshtml" />
     <Content Include="Views\Admin\Eliminar.cshtml" />
     <Content Include="Views\DosPasos\Index.cshtml" />
+    <Content Include="Views\Home\Historial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

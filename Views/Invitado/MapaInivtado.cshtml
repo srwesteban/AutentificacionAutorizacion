@@ -76,7 +76,7 @@
         function ajustarVistaMapa() {
             const markers = [userLocation, petMarker].filter(marker => marker !== null);
             const group = new L.featureGroup(markers);
-            map.fitBounds(group.getBounds(), { paddingBottomRight: [100, 100] }); 
+            map.fitBounds(group.getBounds(), { paddingBottomRight: [110, 110] }); 
         }
 
         function calcularRuta() {

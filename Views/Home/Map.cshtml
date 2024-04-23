@@ -23,12 +23,13 @@
     <link href="~/Estilos/Map.css" rel="stylesheet" />
 </head>
 <body>
-    <div id="map" class="relative w-full h-screen mb-10 max-h-[80vh] z-0"></div>
+    <div id="map" class="relative w-full h-screen mb-10 max-h-[80vh] z-0">
+    </div>
     <div class="modal-footer">
         <form id="searchForm">
             <label for="coordsInput">Ingrese las coordenadas (latitud, longitud):</label><br>
             <div class="input-container">
-                <input type="text" id="coordsInput" name="coords" placeholder="    Ejemplo: 1.2136,-77.2811" required>
+                <input type="text" id="coordsInput" name="coords" placeholder="Ejemplo: 1.2136,-77.2811" required>
                 <button type="submit">Buscar</button>
             </div>
         </form>
@@ -75,7 +76,7 @@
         function ajustarVistaMapa() {
             const markers = [userLocation, petMarker].filter(marker => marker !== null);
             const group = new L.featureGroup(markers);
-            map.fitBounds(group.getBounds(), { paddingBottomRight: [100, 100] });
+            map.fitBounds(group.getBounds(), { paddingBottomRight: [110, 110] });
         }
 
         function calcularRuta() {
