@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Mapa</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3/dist/leaflet-routing-machine.css" />
@@ -15,6 +15,7 @@
         .leaflet-marker-icon {
             display: none !important;
         }
+
         .leaflet-routing-container {
             display: none !important;
         }
@@ -47,7 +48,7 @@
             iconAnchor: [15, 30]
         });
 
-        const map = L.map('map').setView([1.2136, -77.2811], 16);
+        const map = L.map('map').setView([1.2136, -77.2811], 40);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
