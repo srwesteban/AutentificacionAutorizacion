@@ -42,7 +42,6 @@ namespace AutentificacionAutorizacion.Datos
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
