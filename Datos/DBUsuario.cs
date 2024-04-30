@@ -8,7 +8,7 @@ using AutentificacionAutorizacion.Models;
 
 namespace AutentificacionAutorizacion.Datos
 {
-    public class DBUsuario
+    public static class DBUsuario
     {
         public static string CadenaSQL = "Data Source=DESKTOP-PCMGNFF\\SQLEXPRESS; Initial Catalog=PETMAP;Integrated Security=true";
 
