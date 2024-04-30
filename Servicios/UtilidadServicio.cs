@@ -17,10 +17,8 @@ namespace AutentificacionAutorizacion.Servicios
 
             using (SHA256 sha256 = SHA256.Create())
             {
-                // obtener el hash del texto recibido
                 byte[] hashValue = sha256.ComputeHash(Encoding.UTF8.GetBytes(texto));
 
-                // convertir el array byte en cadena de texto
                 foreach (byte b in hashValue)
                     hash += $"{b:X2}";
 

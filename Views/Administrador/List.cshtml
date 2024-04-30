@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+@model List<AutentificacionAutorizacion.Models.Usuario>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Usuarios</title>
+</head>
+<body>
+    <h2>Lista de Usuarios</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Restablecer</th>
+            <th>Confirmado</th>
+            <th>Token</th>
+        </tr>
+        @foreach (var usuario in Model)
+        {
+            <tr>
+                <td>@usuario.IdUsuario</td>
+                <td>@usuario.Nombre</td>
+                <td>@usuario.Correo</td>
+                <td>@usuario.Restablecer</td>
+                <td>@usuario.Confirmado</td>
+                <td>@usuario.Token</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

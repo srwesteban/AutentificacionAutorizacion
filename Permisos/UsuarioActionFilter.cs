@@ -12,7 +12,7 @@ namespace AutentificacionAutorizacion.Permisos
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
-            UsuarioDTO usuario = (UsuarioDTO)filterContext.HttpContext.Session["usuario"];
+            Usuario usuario = (Usuario)filterContext.HttpContext.Session["usuario"];
             filterContext.Controller.ViewBag.Usuario = usuario;
         }
     }

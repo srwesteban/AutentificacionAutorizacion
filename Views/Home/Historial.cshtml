@@ -1,0 +1,62 @@
+﻿@model List<AutentificacionAutorizacion.Models.Registro>
+@{
+    ViewBag.Title = "Historial";
+}
+<style>
+    .contenido{
+        padding: 20px;
+        margin-top: 20px;
+    }
+    .table{
+        color: white;
+    }
+    h2{
+        padding: 20px 0px 20px 0px;
+        text-align: center;
+    }
+</style>
+<body class="contenido">
+    <h2>Historial</h2>
+    @if (Model != null && Model.Count > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Fecha de Búsqueda</th>
+                    <th>Coordenadas</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var registro in Model)
+                {
+                    <tr>
+                        <td>@registro.FechaBusqueda.ToString("dd/MM/yyyy hh:mm:ss tt")</td>
+                        <td>@registro.Coordenadas</td>
+                        <td>
+                            <button class="btn btn-primary btn-copy" data-clipboard-text="@registro.Coordenadas">Copiar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No hay registros disponibles.</p>
+    }
+</body>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script>
+        var clipboard = new ClipboardJS('.btn-copy');
+        clipboard.on('success', function (e) {
+            alert('¡Coordenadas copiadas al portapapeles!');
+            e.clearSelection();
+        });
+        clipboard.on('error', function (e) {
+            alert('Error al copiar coordenadas. Por favor, seleccione manualmente y copie.');
+        });
+    </script>
+}

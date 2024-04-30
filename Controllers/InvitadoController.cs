@@ -11,7 +11,14 @@ namespace AutentificacionAutorizacion.Controllers
         // GET: Invitado
         public ActionResult Index()
         {
-            return View();
+            Session["rol"] = null;
+            Session["usuario"] = null;
+            return View("MapInvitado");
+        }
+
+        public ActionResult Salir()
+        {
+            return RedirectToAction("Login", "Inicio");
         }
     }
 }

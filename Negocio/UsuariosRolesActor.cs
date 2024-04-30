@@ -11,7 +11,7 @@ namespace AutentificacionAutorizacion.Negocio
 {
     public class UsuariosRolesActor
     {
-        public static int ObtenerRol(UsuarioDTO usuario)
+        public static int ObtenerRol(Usuario usuario)
         {
             int idRol = 0;
 
@@ -38,7 +38,7 @@ namespace AutentificacionAutorizacion.Negocio
         }
 
 
-        public static void CrearRegistro(UsuarioDTO usuario)
+        public static void CrearRegistro(Usuario usuario)
         {
             try
             {

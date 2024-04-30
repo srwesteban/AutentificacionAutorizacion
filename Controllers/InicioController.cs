@@ -20,7 +20,7 @@ namespace AutentificacionAutorizacion.Controllers
         [HttpPost]
         public ActionResult Login(string correo, string clave)
         {
-            UsuarioDTO usuario = DBUsuario.Validar(correo, UtilidadServicio.ConvertirSHA256(clave));
+            Usuario usuario = DBUsuario.Validar(correo, UtilidadServicio.ConvertirSHA256(clave));
 
             if (usuario != null)
             {
@@ -44,7 +44,17 @@ namespace AutentificacionAutorizacion.Controllers
                     }
                     else
                     {
+                        Correo correoDTO = new Correo()
+                        {
+                            Para = correo,
+                            Asunto = "Token de seguridad"
+                        };
+                        Console.WriteLine("kjkj");
+
+                        //string tokenEnviado = CorreoServicio.EnviarToken(correoDTO);
                         Session["usuario"] = usuario;
+                        //Session["tokenEnviado"] = tokenEnviado;
+                        //return RedirectToAction("Index", "DosPasos");
                         return RedirectToAction("Index", "Home");
                     }
                 }
@@ -64,7 +74,7 @@ namespace AutentificacionAutorizacion.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Registrar(UsuarioDTO usuario)
+        public ActionResult Registrar(Usuario usuario)
         {
             if (usuario.Clave != usuario.ConfirmarClave)
             {
@@ -90,7 +100,7 @@ namespace AutentificacionAutorizacion.Controllers
 
                     string htmlBody = string.Format(content, usuario.Nombre, url);
 
-                    CorreoDTO correoDTO = new CorreoDTO()
+                    Correo correoDTO = new Correo()
                     {
                         Para = usuario.Correo,
                         Asunto = "Correo confirmacion",
@@ -101,7 +111,7 @@ namespace AutentificacionAutorizacion.Controllers
                     ViewBag.Creado = true;
                     ViewBag.Mensaje = $"Su cuenta ha sido creada. Hemos enviado un mensaje al correo {usuario.Correo} para confirmar su cuenta";
 
-                    UsuarioDTO usuarioCreado = DBUsuario.Obtener(usuario.Correo);
+                    Usuario usuarioCreado = DBUsuario.Obtener(usuario.Correo);
 
                     UsuariosRolesActor.CrearRegistro(usuarioCreado);
 
@@ -138,7 +148,7 @@ namespace AutentificacionAutorizacion.Controllers
         [HttpPost]
         public ActionResult Restablecer(string correo)
         {
-            UsuarioDTO usuario = DBUsuario.Obtener(correo);
+            Usuario usuario = DBUsuario.Obtener(correo);
             ViewBag.Correo = correo;
             if (usuario != null)
             {
@@ -152,7 +162,7 @@ namespace AutentificacionAutorizacion.Controllers
 
                     string htmlBody = string.Format(content, usuario.Nombre, url);
 
-                    CorreoDTO correoDTO = new CorreoDTO()
+                    Correo correoDTO = new Correo()
                     {
                         Para = correo,
                         Asunto = "Restablecer cuenta",

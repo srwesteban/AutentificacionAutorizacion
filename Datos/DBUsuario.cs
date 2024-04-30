@@ -8,11 +8,11 @@ using AutentificacionAutorizacion.Models;
 
 namespace AutentificacionAutorizacion.Datos
 {
-    public class DBUsuario
+    public static class DBUsuario
     {
         public static string CadenaSQL = "Data Source=DESKTOP-PCMGNFF\\SQLEXPRESS; Initial Catalog=PETMAP;Integrated Security=true";
 
-        public static bool Registrar(UsuarioDTO usuario)
+        public static bool Registrar(Usuario usuario)
         {
             bool respuesta = false;
             try
@@ -42,14 +42,13 @@ namespace AutentificacionAutorizacion.Datos
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
 
-        public static UsuarioDTO Validar(string correo, string clave)
+        public static Usuario Validar(string correo, string clave)
         {
-            UsuarioDTO usuario = null;
+            Usuario usuario = null;
             try
             {
                 using (SqlConnection oconexion = new SqlConnection(CadenaSQL))
@@ -68,7 +67,7 @@ namespace AutentificacionAutorizacion.Datos
                     {
                         if (dr.Read())
                         {
-                            usuario = new UsuarioDTO()
+                            usuario = new Usuario()
                             {
                                 IdUsuario = (int)dr["IdUsuario"],
                                 Nombre = dr["Nombre"].ToString(),
@@ -89,9 +88,9 @@ namespace AutentificacionAutorizacion.Datos
 
 
 
-        public static UsuarioDTO Obtener(string correo)
+        public static Usuario Obtener(string correo)
         {
-            UsuarioDTO usuario = null;
+            Usuario usuario = null;
             try
             {
                 using (SqlConnection oconexion = new SqlConnection(CadenaSQL))
@@ -109,7 +108,7 @@ namespace AutentificacionAutorizacion.Datos
                     {
                         if (dr.Read())
                         {
-                            usuario = new UsuarioDTO()
+                            usuario = new Usuario()
                             {
                                 IdUsuario = (int)dr["IdUsuario"],
                                 Nombre = dr["Nombre"].ToString(),
@@ -199,9 +198,9 @@ namespace AutentificacionAutorizacion.Datos
 
 
         ////////////////////////////////////////////////////////CRUD//////////////////////////////////////////////////////
-        public static List<UsuarioDTO> ListarUsuarios()
+        public static List<Usuario> ListarUsuarios()
         {
-            List<UsuarioDTO> usuarios = new List<UsuarioDTO>();
+            List<Usuario> usuarios = new List<Usuario>();
 
             try
             {
@@ -215,7 +214,7 @@ namespace AutentificacionAutorizacion.Datos
                         {
                             while (reader.Read())
                             {
-                                UsuarioDTO usuario = new UsuarioDTO();
+                                Usuario usuario = new Usuario();
                                 usuario.IdUsuario = Convert.ToInt32(reader["IdUsuario"]);
                                 usuario.Nombre = Convert.ToString(reader["Nombre"]);
                                 usuario.Correo = Convert.ToString(reader["Correo"]);
@@ -238,9 +237,9 @@ namespace AutentificacionAutorizacion.Datos
             return usuarios;
         }
 
-        public static UsuarioDTO ObtenerPorId(int id)
+        public static Usuario ObtenerPorId(int id)
         {
-            UsuarioDTO usuario = null;
+            Usuario usuario = null;
 
             try
             {
@@ -255,7 +254,7 @@ namespace AutentificacionAutorizacion.Datos
                         {
                             if (reader.Read())
                             {
-                                usuario = new UsuarioDTO();
+                                usuario = new Usuario();
                                 usuario.IdUsuario = id;
                                 usuario.Nombre = Convert.ToString(reader["Nombre"]);
                                 usuario.Correo = Convert.ToString(reader["Correo"]);
@@ -277,7 +276,7 @@ namespace AutentificacionAutorizacion.Datos
             return usuario;
         }
 
-        public static bool Actualizar(UsuarioDTO usuario)
+        public static bool Actualizar(Usuario usuario)
         {
             try
             {
