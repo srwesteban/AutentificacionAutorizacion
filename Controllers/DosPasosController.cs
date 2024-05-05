@@ -26,7 +26,7 @@ namespace AutentificacionAutorizacion.Controllers
                 tokenEnviado = tokenEnviado
             };
 
-            return View(viewModel);
+            return View("DosPasosView",viewModel);
         }
 
         //[HttpPost]
@@ -73,7 +73,7 @@ namespace AutentificacionAutorizacion.Controllers
                 Session["intentosToken"] = intentos; // Actualiza el número de intentos restantes
                 TempData["ErrorMessage"] = $"El token ingresado no es válido numero de intentos restantes: {intentos}";
                 TempData["AttemptCount"] = intentos;
-                return RedirectToAction("Index", "DosPasos");
+                return RedirectToAction("DosPasosView", "DosPasos");
             }
         }
     }
