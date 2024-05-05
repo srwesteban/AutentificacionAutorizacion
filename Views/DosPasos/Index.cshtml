@@ -8,28 +8,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verificación de Token</title>
-    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="~/Estilos/LoginRegistro.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <h2>Bienvenido, @Model.Usuario.Nombre</h2>
-                <h4>Por favor, ingresa el token de 6 dígitos que recibiste:</h4>
-                <form action="@Url.Action("VerificarToken", "DosPasos")" method="post">
-                    @Html.HiddenFor(model => model.Usuario)
-                    @Html.HiddenFor(model => model.tokenEnviado)
-                    <div class="form-group">
-                        <label for="token">Token:</label>
-                        <input type="text" class="form-control" id="token" name="token" pattern="[0-9]{6}" title="El token debe ser un número de 6 dígitos" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Verificar Token</button>
-                </form>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="col-md-6 col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    @*<h2>Bienvenido, @Model.Usuario.Nombre</h2>*@
+                </div>
+                <div class="card-body">
+                    <h4>Por favor, ingresa el token que recibiste:</h4>
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+                    }
+                    <form action="@Url.Action("VerificarToken", "DosPasos")" method="post">
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.Usuario.IdUsuario)
+                        <div class="form-group">
+                            <label for="token">Token:</label>
+                            <input type="text" class="form-control" id="token" name="token" pattern="[0-9]{6}" title="El token debe ser un número de 6 dígitos" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Verificar Token</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var attempts = @TempData["AttemptCount"] ?? 0;
+            if (attempts >= 3) {
+                alert("Has alcanzado el número máximo de intentos.");
+                window.location.href = '@Url.Action("Index", "Home")'; // Redirige al index o muestra otro mensaje.
+            }
+        });
+    </script>
 </body>
 </html>

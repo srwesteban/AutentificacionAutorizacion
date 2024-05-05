@@ -9,17 +9,25 @@ using MimeKit.Text;
 using MimeKit;
 using MailKit.Net.Smtp;
 using static Org.BouncyCastle.Asn1.Cmp.Challenge;
+using System.Configuration;
 
 namespace AutentificacionAutorizacion.Servicios
 {
     public static class CorreoServicio
     {
-        private static string _Host = "smtp.gmail.com";
-        private static int _Puerto = 587;
+        //private static string _Host = "smtp.gmail.com";
+        //private static int _Puerto = 587;
 
-        private static string _NombreEnvia = "PetMap";
-        private static string _Correo = "sr.westeban@gmail.com";
-        private static string _Clave = "pslkleyhfgxllmmv";
+        //private static string _NombreEnvia = "PetMap";
+        //private static string _Correo = "sr.westeban@gmail.com";
+        //private static string _Clave = "pslkleyhfgxllmmv";
+
+        private static string _Host = ConfigurationManager.AppSettings["EmailHost"];
+        private static int _Puerto = Convert.ToInt32(ConfigurationManager.AppSettings["EmailPort"]);
+        private static string _NombreEnvia = ConfigurationManager.AppSettings["EmailFromName"];
+        private static string _Correo = ConfigurationManager.AppSettings["EmailUsername"];
+        private static string _Clave = ConfigurationManager.AppSettings["EmailPassword"];
+
         private static Random random = new Random();
 
 
