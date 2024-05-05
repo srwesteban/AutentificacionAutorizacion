@@ -3,9 +3,10 @@
     ViewBag.Title = "Historial";
 }
 <style>
-    .contenido{
+    .historial {
         padding: 20px;
-        margin-top: 20px;
+        margin: 100px;
+        background-color: black !important;
     }
     .table{
         color: white;
@@ -13,9 +14,10 @@
     h2{
         padding: 20px 0px 20px 0px;
         text-align: center;
+        color: white;
     }
 </style>
-<body class="contenido">
+<div class="historial">
     <h2>Historial</h2>
     @if (Model != null && Model.Count > 0)
     {
@@ -45,7 +47,7 @@
     {
         <p>No hay registros disponibles.</p>
     }
-</body>
+</div>
 
 @section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>

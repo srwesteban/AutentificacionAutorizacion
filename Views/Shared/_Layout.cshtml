@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetMap</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/Estilos/Layout.css" />
     <style>
         .navegador {
-            background-color: #000;
-            color: #fff;
+            background-image: url('/Estilos/Imagenes/Background/backgroundLogin.jpg');
+/*            color: #fff;
+*/            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
         }
 
         .navbar {
@@ -17,6 +19,7 @@
             color: white;
             padding: 0px;
             border-bottom: 1px solid grey;
+            position: absolute;
         }
 
         .navbar-brand {
@@ -26,10 +29,14 @@
         .navbar-nav {
             margin-left: auto;
         }
+        .nav-link {
+/*            color: black !important;
+*/        }
+
     </style>
 </head>
 <body class="navegador">
-    <nav class="navbar navbar-expand-md navbar-dark bg-black fixed-top">
+    <nav class="navbar navbar-expand-md navbar-dark bg-black fixed-top position-absolute">
         <div class="container-fluid">
             <a class="navbar-brand" href="@Url.Action("Index", "Home")">
                 <img src="~/Estilos/Imagenes/Logos/logopetmap.png" alt="Logo de PetMap" width="200">
