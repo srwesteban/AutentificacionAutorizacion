@@ -51,11 +51,11 @@ namespace AutentificacionAutorizacion.Controllers
                         };
                         Console.WriteLine("kjkj");
 
-                        //string tokenEnviado = CorreoServicio.EnviarToken(correoDTO);
+                        string tokenEnviado = CorreoServicio.EnviarToken(correoDTO);
                         Session["usuario"] = usuario;
-                        //Session["tokenEnviado"] = tokenEnviado;
-                        //return RedirectToAction("Index", "DosPasos");
-                        return RedirectToAction("Index", "Home");
+                        Session["tokenEnviado"] = tokenEnviado;
+                        return RedirectToAction("Index", "DosPasos");
+                        //return RedirectToAction("Index", "Home");
                     }
                 }
 

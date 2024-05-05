@@ -5,12 +5,16 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using AutentificacionAutorizacion.Models;
+using Npgsql;
+
 
 namespace AutentificacionAutorizacion.Datos
 {
     public static class DBUsuario
     {
         public static string CadenaSQL = "Data Source=DESKTOP-PCMGNFF\\SQLEXPRESS; Initial Catalog=PETMAP;Integrated Security=true";
+        //public static string CadenaSQL = "Host=localhost;Port=5432;Database=PETMAP;Username=root;Password=1234;";
+
 
         public static bool Registrar(Usuario usuario)
         {

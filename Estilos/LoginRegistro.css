@@ -1,0 +1,47 @@
+﻿body {
+    background-image: url('Imagenes/Background/backgroundLogin.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.card {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+.input-group-text {
+    background-color: #FFC312;
+    color: black;
+}
+
+.btn-primary {
+    background-color: #0082ff;
+    color: white;
+}
+.text-color {
+    color: #FFC312;
+}
+.btn-secondary {
+    background-color: #555;
+    color: white;
+}
+
+.footer-links a {
+    color: #FFC312;
+}
+
+    .footer-links a:hover {
+        color: white;
+    }

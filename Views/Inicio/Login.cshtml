@@ -7,12 +7,11 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Login</title>
-    @Styles.Render("~/Content/css")
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-    <link href="~/Estilos/Login.css" rel="stylesheet" />
+    <link href="~/Estilos/LoginRegistro.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -54,7 +53,7 @@
                             </div>
                             <div class="mb-3">
                                 <div class="d-grid">
-                                    <a class="btn btn-secondary" href="@Url.Action("Index", "Invitado")">Ingresar como invitado</a>
+                                    <a class="btn btn-secondary btn-block" href="@Url.Action("Index", "Invitado")">Ingresar como invitado</a>
                                 </div>
                             </div>
                             <div class="card-footer text-center">
