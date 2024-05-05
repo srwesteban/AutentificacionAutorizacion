@@ -26,11 +26,13 @@ namespace AutentificacionAutorizacion.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Contacto(string id)
         {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
+            Usuario usuario = UsuarioActor.ObtenerUsuario(id);
+
+
+            return View("Contacto" , usuario);
         }
 
         public ActionResult CerrarSesion()

@@ -7,10 +7,11 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/Estilos/Layout.css" />
     <style>
-        .navegador {  
+        .navegador {
             background-color: #000;
             color: #fff;
         }
+
         .navbar {
             background-color: black;
             color: white;
@@ -50,7 +51,7 @@
                             <a class="nav-link" href="@Url.Action("Historial", "Home", new { id = @ViewBag.Usuario.IdUsuario })">Historial</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Contact", "Home")">Contacto</a>
+                            <a class="nav-link" href="@Url.Action("Contacto", "Home", new { id = @ViewBag.Usuario.IdUsuario })" )">Contacto</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("CerrarSesion", "Home")">Cerrar Sesión</a>
@@ -71,27 +72,30 @@
         </div>
     </nav>
 
-    <div class="container mt-5">
-        @RenderBody()
-    </div>
+
 
     @RenderSection("Scripts", required: false)
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-    const navbarToggle = document.querySelector(".navbar-toggler");
-    const navbarCollapse = document.querySelector(".navbar-collapse");
-    navbarToggle.addEventListener("click", function () {
-    navbarCollapse.classList.toggle("show");
-    });
-    navbarCollapse.addEventListener("click", function (event) {
-    if (event.target.tagName === "A") {
-    navbarCollapse.classList.remove("show");
-    }
-    });
-    });
+        document.addEventListener("DOMContentLoaded", function () {
+            const navbarToggle = document.querySelector(".navbar-toggler");
+            const navbarCollapse = document.querySelector(".navbar-collapse");
+            navbarToggle.addEventListener("click", function () {
+                navbarCollapse.classList.toggle("show");
+            });
+            navbarCollapse.addEventListener("click", function (event) {
+                if (event.target.tagName === "A") {
+                    navbarCollapse.classList.remove("show");
+                }
+            });
+        });
     </script>
+
+    <div class="container mt-5">
+        @RenderBody()
+    </div>
 </body>
+
 
 </html>

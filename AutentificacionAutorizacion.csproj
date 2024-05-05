@@ -48,6 +48,9 @@
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
       <HintPath>packages\BouncyCastle.Cryptography.2.3.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
     </Reference>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Dapper.2.1.35\lib\net461\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="MailKit, Version=4.4.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
       <HintPath>packages\MailKit.4.4.0\lib\net47\MailKit.dll</HintPath>
     </Reference>
@@ -223,6 +226,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Estilos\Contacto.css" />
     <Content Include="Estilos\Imagenes\Background\backgroundLogin.jpg" />
     <Content Include="Estilos\Imagenes\ImagenesMapa\feliz.png" />
     <Content Include="Estilos\Imagenes\ImagenesMapa\persona.png" />
@@ -265,7 +269,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Instrucciones.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Contacto.cshtml" />
     <Content Include="Views\Home\Map.cshtml" />
     <Content Include="Views\Inicio\Actualizar.cshtml" />
     <Content Include="Views\Inicio\Confirmar.cshtml" />
