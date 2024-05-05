@@ -23,6 +23,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            text-align: center;
         }
 
         .titulo {
@@ -66,22 +67,26 @@
             input[type="submit"]:hover {
                 background-color: #0056b3; /* Cambia el color al pasar el mouse */
             }
+
+        .nota {
+            color: red;
+        }
     </style>
 </head>
-<body>
+<div class="contenido">
+    <h2>Dejanos un mensaje, </h2>
+    <h4>te escribiremos al correo registrado</h4>
+    <br>
+    <h5>De: @Model.Nombre</h5> <!-- Muestra el nombre del usuario -->
 
-    <div class="contenido">
-        <h2 class="titulo">Contacto de Usuario</h2>
-        <h3>De: @Model.Nombre</h3> <!-- Muestra el nombre del usuario -->
+    @using (Html.BeginForm("Contact", "ControllerName", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <label for="mensaje"><i class="fas fa-envelope"></i> Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..."></textarea>
 
-        @using (Html.BeginForm("Contact", "ControllerName", FormMethod.Post, new { @class = "form-horizontal" }))
-        {
-            <label for="mensaje"><i class="fas fa-envelope"></i> Mensaje:</label>
-            <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..."></textarea>
-
-            <input type="submit" value="Enviar" />
-        }
-    </div>
-
-</body>
+        <input type="submit" value="Enviar" />
+    }
+    <br>
+    <p class="nota">Nota: te contestaremos en los proximos 5 dias habiles aproximadamente</p>
+</div>
 </html>

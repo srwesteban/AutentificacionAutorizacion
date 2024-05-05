@@ -1,18 +1,17 @@
 ﻿/* Estilos CSS */
 .instrucciones {
     position: fixed;
-    top: 55PX;
+    top: 55px;
     left: 0;
     padding: 20px;
     width: 100%;
     height: 100%;
     background-color: rgba(248, 249, 250, 0.9);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 0; /* Sin bordes redondeados */
+    border-radius: 0;
     font-family: Arial, sans-serif;
     display: flex;
-    flex-direction: column; /* Alinea los elementos verticalmente */
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
 
