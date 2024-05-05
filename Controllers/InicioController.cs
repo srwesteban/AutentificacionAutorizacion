@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using AutentificacionAutorizacion.Datos;
 using AutentificacionAutorizacion.Servicios;
 using AutentificacionAutorizacion.Negocio;
+using AutentificacionAutorizacion.ViewModels;
 
 namespace AutentificacionAutorizacion.Controllers
 {
@@ -49,13 +50,13 @@ namespace AutentificacionAutorizacion.Controllers
                             Para = correo,
                             Asunto = "Token de seguridad"
                         };
-                        Console.WriteLine("kjkj");
 
-                        //string tokenEnviado = CorreoServicio.EnviarToken(correoDTO);
+                        string tokenEnviado = CorreoServicio.EnviarToken(correoDTO);
                         Session["usuario"] = usuario;
-                        //Session["tokenEnviado"] = tokenEnviado;
-                        //return RedirectToAction("Index", "DosPasos");
-                        return RedirectToAction("Index", "Home");
+                        Session["tokenEnviado"] = tokenEnviado;
+
+                        return RedirectToAction("Index", "DosPasos");
+                        //return RedirectToAction("Index", "Home");
                     }
                 }
 

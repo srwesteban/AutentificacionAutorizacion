@@ -281,7 +281,7 @@
     <Content Include="Views\Admin\Crear.cshtml" />
     <Content Include="Views\Admin\Editar.cshtml" />
     <Content Include="Views\Admin\Eliminar.cshtml" />
-    <Content Include="Views\DosPasos\Index.cshtml" />
+    <Content Include="Views\DosPasos\DosPasosView.cshtml" />
     <Content Include="Views\Home\Historial.cshtml" />
   </ItemGroup>
   <ItemGroup>
