@@ -59,24 +59,16 @@ namespace AutentificacionAutorizacion.Negocio
         public static List<Registro> ObtenerRegistros(string id)
         {
             List<Registro> registros = new List<Registro>();
-            string query = "SELECT * FROM Registros WHERE IdUsuario = @IdUsuario";
+            string query = "SELECT * FROM Registros WHERE IdUsuario = @IdUsuario ORDER BY FechaBusqueda DESC";
 
-            // Crear una nueva conexión a la base de datos
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                // Abrir la conexión
                 connection.Open();
-
-                // Crear un nuevo comando SQL
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    // Agregar parámetro al comando SQL
                     command.Parameters.AddWithValue("@IdUsuario", id);
-
-                    // Crear un lector de datos
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        // Iterar sobre los resultados y agregarlos a la lista de registros
                         while (reader.Read())
                         {
                             Registro registro = new Registro();
