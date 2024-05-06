@@ -2,6 +2,7 @@
 using AutentificacionAutorizacion.Negocio;
 using AutentificacionAutorizacion.Permisos;
 using AutentificacionAutorizacion.Servicios;
+using AutentificacionAutorizacion.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,11 +62,11 @@ namespace AutentificacionAutorizacion.Controllers
 
             return Json(new { success = true, message = "Registro guardado exitosamente" });
         }
-       
 
-        public ActionResult Historial(string id)
+
+        public ActionResult Historial(string id, int pageNumber = 1)
         {
-            List<Registro> registros = new List<Registro>();
+            HistorialViewModel model = new HistorialViewModel();
 
             try
             {
@@ -75,19 +76,28 @@ namespace AutentificacionAutorizacion.Controllers
                     return RedirectToAction("Index", "Home");
                 }
 
-                registros = RegistrosActor.ObtenerRegistros(id);
+                int pageSize = 20; // Cantidad de registros por página
+
+                model.Registros = RegistrosActor.ObtenerRegistros(id, pageNumber, pageSize);
+                model.IdUsuario = id;
+                model.CurrentPage = pageNumber;
+
+                int totalRegistros = RegistrosActor.ContarRegistros(id);
+                model.TotalPages = (totalRegistros + pageSize - 1) / pageSize; // Ajuste para calcular correctamente el total de páginas
             }
-            catch
+            catch (Exception ex)
             {
-                throw;
+                return View("Error");
             }
             finally
             {
                 RegistrosActor.CerrarConexion();
             }
 
-            return View("Historial", registros);
+            return View("Historial", model);
         }
+
+
 
 
         public ActionResult EnviarComentario(string comentario)

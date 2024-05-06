@@ -56,10 +56,19 @@ namespace AutentificacionAutorizacion.Negocio
             }
         }
 
-        public static List<Registro> ObtenerRegistros(string id)
+        public static List<Registro> ObtenerRegistros(string id, int pageNumber, int pageSize)
         {
             List<Registro> registros = new List<Registro>();
-            string query = "SELECT * FROM Registros WHERE IdUsuario = @IdUsuario ORDER BY FechaBusqueda DESC";
+            string query = @"SELECT * FROM ( 
+                        SELECT ROW_NUMBER() OVER (ORDER BY FechaBusqueda DESC) as RowNum, *
+                        FROM Registros
+                        WHERE IdUsuario = @IdUsuario
+                     ) AS RowConstrainedResult
+                     WHERE RowNum >= @StartRow AND RowNum < @EndRow
+                     ORDER BY RowNum";
+
+            int startRow = (pageNumber - 1) * pageSize + 1;
+            int endRow = startRow + pageSize;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -67,6 +76,8 @@ namespace AutentificacionAutorizacion.Negocio
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@IdUsuario", id);
+                    command.Parameters.AddWithValue("@StartRow", startRow);
+                    command.Parameters.AddWithValue("@EndRow", endRow);
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -84,6 +95,22 @@ namespace AutentificacionAutorizacion.Negocio
             }
 
             return registros;
+        }
+
+        public static int ContarRegistros(string idUsuario)
+        {
+            int count = 0;
+            string query = "SELECT COUNT(*) FROM Registros WHERE IdUsuario = @IdUsuario";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                    count = Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+            return count;
         }
 
     }
