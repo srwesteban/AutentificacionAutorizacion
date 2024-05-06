@@ -27,7 +27,7 @@ namespace AutentificacionAutorizacion.Controllers
             return View();
         }
 
-        public ActionResult Contacto(string id)
+        public ActionResult Contacto()
         {
             Usuario usuario = (Usuario)Session["usuario"];
 
@@ -61,12 +61,20 @@ namespace AutentificacionAutorizacion.Controllers
 
             return Json(new { success = true, message = "Registro guardado exitosamente" });
         }
+       
+
         public ActionResult Historial(string id)
         {
             List<Registro> registros = new List<Registro>();
 
             try
             {
+                Usuario usuario = (Usuario)Session["usuario"];
+                if (usuario == null || usuario.IdUsuario.ToString() != id)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
                 registros = RegistrosActor.ObtenerRegistros(id);
             }
             catch
@@ -76,11 +84,11 @@ namespace AutentificacionAutorizacion.Controllers
             finally
             {
                 RegistrosActor.CerrarConexion();
-
             }
 
             return View("Historial", registros);
         }
+
 
         public ActionResult EnviarComentario(string comentario)
         {

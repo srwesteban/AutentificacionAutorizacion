@@ -227,6 +227,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Estilos\Contacto.css" />
+    <Content Include="Estilos\historial.css" />
     <Content Include="Estilos\Imagenes\Background\backgroundLogin.jpg" />
     <Content Include="Estilos\Imagenes\ImagenesMapa\feliz.png" />
     <Content Include="Estilos\Imagenes\ImagenesMapa\persona.png" />
