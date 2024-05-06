@@ -1,7 +1,7 @@
 ﻿/* Estilos CSS */
 .instrucciones {
     position: fixed;
-    top: 55px;
+    top: 0;
     left: 0;
     padding: 20px;
     width: 100%;
@@ -12,11 +12,16 @@
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    text-align: center;
 }
-
+.titulo {
+    font-size: 24px;
+    text-align: center;
+}
 .steps {
-    max-width: 600px; /* Limita el ancho de los pasos */
+    max-width: 700px; /* Limita el ancho de los pasos */
     width: 100%;
 }
 
@@ -27,9 +32,11 @@
 }
 
 .step-image {
-    width: 80px; /* Reducimos el tamaño de las imágenes */
-    height: 80px;
+    width: 250px; 
+    height: 130px;
     margin-right: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
 .step-content {
@@ -37,13 +44,13 @@
 }
 
 .step-title {
-    font-size: 18px; /* Reducimos el tamaño de los títulos */
+    font-size: 18px; 
     color: #0056b3;
-    margin-bottom: 5px; /* Agregamos margen inferior */
+    margin-bottom: 5px; 
 }
 
 .step-description {
-    font-size: 14px; /* Reducimos el tamaño de la descripción */
+    font-size: 14px; 
     color: #666;
 }
 
@@ -55,15 +62,27 @@ footer {
     border-radius: 0;
 }
 
-/* Media queries para hacer la página responsive */
 @media (max-width: 768px) {
     .instrucciones {
-        padding: 10px;
+        justify-content: normal;
+        position: relative !important;
+    }
+
+    .titulo {
+        margin-top: 60px;
+        text-align: center;
+    }
+
+    .step {
+        display: block; 
+        text-align: center; 
+        margin: 20px auto;
     }
 
     .step-image {
-        width: 60px;
-        height: 60px;
+        width: 100%; 
+        height: auto; 
+        margin-bottom: 10px; 
     }
 
     .step-title {
@@ -71,7 +90,7 @@ footer {
     }
 
     .step-description {
-        font-size: 12px;
+        font-size: 18px;
     }
 
     footer {
