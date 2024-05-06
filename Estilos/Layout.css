@@ -16,12 +16,19 @@
     left: 0;
     width: 100%;
 }
+
 .container-fluid {
+    background-color: black;
+    color: white;
+    padding: 0px;
+    border-bottom: 1px solid grey;
+    position: fixed;
+    display: flex;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 8;
 }
+
 .navbar-brand {
     margin-right: auto;
 }
@@ -32,6 +39,7 @@
 
 .nav-link {
     color: white !important;
+    margin: 8px;
 }
 .nav-item {
     border: 2px 2px 0px 0px solid gray;
