@@ -230,6 +230,7 @@
     <Content Include="Estilos\Imagenes\Background\backgroundLogin.jpg" />
     <Content Include="Estilos\Imagenes\ImagenesMapa\feliz.png" />
     <Content Include="Estilos\Imagenes\ImagenesMapa\persona.png" />
+    <Content Include="Estilos\Imagenes\instruccionesImg\buscar.jpeg" />
     <Content Include="Estilos\Imagenes\instruccionesImg\coordenadas.jpeg" />
     <Content Include="Estilos\Imagenes\instruccionesImg\onoff.jpeg" />
     <Content Include="Estilos\Imagenes\instruccionesImg\smsbienvenida.jpeg" />
