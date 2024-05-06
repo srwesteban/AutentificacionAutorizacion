@@ -10,17 +10,14 @@ using MimeKit;
 using MailKit.Net.Smtp;
 using static Org.BouncyCastle.Asn1.Cmp.Challenge;
 using System.Configuration;
+using Newtonsoft.Json;
+using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace AutentificacionAutorizacion.Servicios
 {
     public static class CorreoServicio
     {
-        //private static string _Host = "smtp.gmail.com";
-        //private static int _Puerto = 587;
-
-        //private static string _NombreEnvia = "PetMap";
-        //private static string _Correo = "sr.westeban@gmail.com";
-        //private static string _Clave = "pslkleyhfgxllmmv";
 
         private static string _Host = ConfigurationManager.AppSettings["EmailHost"];
         private static int _Puerto = Convert.ToInt32(ConfigurationManager.AppSettings["EmailPort"]);
@@ -100,6 +97,31 @@ namespace AutentificacionAutorizacion.Servicios
             {
                 throw;
             }
+        }
+
+
+        public static bool EnviarComentario(string comentario, Usuario usuario)
+        {
+            string contenido = $"{comentario}";
+
+            var email = new MimeMessage();
+
+            email.From.Add(new MailboxAddress("Petmap usuario: " +usuario.Nombre, _Correo));
+            email.To.Add(MailboxAddress.Parse("sr.w@hotmail.com"));
+            email.Subject = $"Correo de: {usuario.Nombre},  Correo: {usuario.Correo}, id: {usuario.IdUsuario}";
+            email.Body = new TextPart(TextFormat.Html)
+            {
+                Text = contenido
+            };
+
+            var smtp = new SmtpClient();
+            smtp.Connect(_Host, _Puerto, SecureSocketOptions.StartTls);
+
+            smtp.Authenticate(_Correo, _Clave);
+            smtp.Send(email);
+            smtp.Disconnect(true);
+
+            return true;
         }
     }
 

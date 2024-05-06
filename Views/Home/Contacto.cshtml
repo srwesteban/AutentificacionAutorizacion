@@ -18,7 +18,7 @@
             background-color: rgba(248, 249, 250, 0.9);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -28,12 +28,11 @@
 
         .titulo {
             margin-top: 40px;
-            text-align: center;
         }
 
         form {
             width: 100%;
-            max-width: 400px; /* Ancho máximo del formulario */
+            max-width: 400px;
         }
 
         label {
@@ -48,8 +47,8 @@
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            resize: none; /* Evita que se redimensione */
-            height: 150px; /* Altura fija */
+            resize: none;
+            height: 150px;
         }
 
         input[type="submit"] {
@@ -57,14 +56,14 @@
             padding: 10px;
             border: none;
             border-radius: 5px;
-            background-color: #007bff; /* Color de fondo azul */
-            color: #ffffff; /* Texto en blanco */
+            background-color: #007bff;
+            color: #ffffff;
             cursor: pointer;
-            transition: background-color 0.3s ease; /* Efecto de transición */
+            transition: background-color 0.3s ease;
         }
 
             input[type="submit"]:hover {
-                background-color: #0056b3; /* Cambia el color al pasar el mouse */
+                background-color: #0056b3;
             }
 
         .nota {
@@ -72,20 +71,29 @@
         }
     </style>
 </head>
-<div class="contenido">
-    <h2 class="titulo">Dejanos un mensaje, </h2>
-    <h4>te escribiremos al correo registrado</h4>
-    <br>
-    <h5>De: @Model.Nombre</h5> <!-- Muestra el nombre del usuario -->
+<body>
+    <div class="contenido">
 
-    @using (Html.BeginForm("Contact", "ControllerName", FormMethod.Post, new { @class = "form-horizontal" }))
-    {
-        <label for="mensaje"><i class="fas fa-envelope"></i> Mensaje:</label>
-        <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..."></textarea>
+        <h2 class="titulo">Déjanos un mensaje</h2>
+        <h4>Te escribiremos al correo registrado</h4>
+        <br>
+        <h5>De: @Model.Nombre</h5> <!-- Muestra el nombre del usuario -->
 
-        <input type="submit" value="Enviar" />
-    }
-    <br>
-    <p class="nota">Nota: te contestaremos en los proximos 5 dias habiles aproximadamente</p>
-</div>
+        @using (Html.BeginForm("EnviarComentario", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            <label for="comentario"><i class="fas fa-envelope"></i> Mensaje:</label>
+            <textarea id="comentario" name="comentario" placeholder="Escribe tu mensaje aquí..."></textarea>
+            <input type="submit" value="Enviar" />
+        }
+        @if (TempData["Mensaje"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["Mensaje"]
+            </div>
+        }
+
+        <br>
+        <p class="nota">Nota: Te contestaremos en los próximos 5 días hábiles aproximadamente.</p>
+    </div>
+</body>
 </html>

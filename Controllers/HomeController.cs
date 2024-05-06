@@ -1,6 +1,7 @@
 ﻿using AutentificacionAutorizacion.Models;
 using AutentificacionAutorizacion.Negocio;
 using AutentificacionAutorizacion.Permisos;
+using AutentificacionAutorizacion.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +29,7 @@ namespace AutentificacionAutorizacion.Controllers
 
         public ActionResult Contacto(string id)
         {
-
-            Usuario usuario = UsuarioActor.ObtenerUsuario(id);
-
+            Usuario usuario = (Usuario)Session["usuario"];
 
             return View("Contacto" , usuario);
         }
@@ -82,6 +81,19 @@ namespace AutentificacionAutorizacion.Controllers
 
             return View("Historial", registros);
         }
+
+        public ActionResult EnviarComentario(string comentario)
+        {
+            Usuario u = (Usuario)Session["usuario"];
+            string id = u.IdUsuario.ToString();
+            Usuario usuario = UsuarioActor.ObtenerUsuario(id);
+            CorreoServicio.EnviarComentario(comentario, usuario);
+
+            TempData["Mensaje"] = "¡El comentario fue enviado con éxito!";
+
+            return View("Contacto", u);
+        }
+
 
     }
 }
