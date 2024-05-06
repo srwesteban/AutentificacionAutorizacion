@@ -89,7 +89,7 @@ namespace AutentificacionAutorizacion.Controllers
             Usuario usuario = UsuarioActor.ObtenerUsuario(id);
             CorreoServicio.EnviarComentario(comentario, usuario);
 
-            TempData["Mensaje"] = "¡El comentario fue enviado con éxito!";
+            TempData["Mensaje"] = "¡El mensaje fue enviado con éxito!";
 
             return View("Contacto", u);
         }
