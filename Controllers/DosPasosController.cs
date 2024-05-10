@@ -28,26 +28,6 @@ namespace AutentificacionAutorizacion.Controllers
 
             return View("DosPasosView",viewModel);
         }
-
-        //[HttpPost]
-        //public ActionResult VerificarToken(string token, Usuario usuario, string tokenEnviado)
-        //{
-        //    var u = (Usuario)Session["usuario"];
-
-        //    if (string.Equals(tokenEnviado, token, StringComparison.OrdinalIgnoreCase))
-        //    {
-
-        //        Session["usuario"] = u;
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //    else
-        //    {
-        //        TempData["ErrorMessage"] = "El token ingresado no es válido. Por favor, intenta de nuevo.";
-        //        return RedirectToAction("Login", "Inicio");
-        //    }
-        //}
-
-
         [HttpPost]
         public ActionResult VerificarToken(string token, Usuario usuario, string tokenEnviado)
         {

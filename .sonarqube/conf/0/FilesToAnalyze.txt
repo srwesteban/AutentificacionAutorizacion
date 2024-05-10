@@ -21,6 +21,7 @@ C:\Users\W2\source\repos\AutentificacionAutorizacion\Permisos\ValidarSesionAttri
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Properties\AssemblyInfo.cs
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Servicios\UtilidadServicio.cs
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Servicios\CorreoServicio.cs
+C:\Users\W2\source\repos\AutentificacionAutorizacion\ViewModels\HistorialViewModel.cs
 C:\Users\W2\source\repos\AutentificacionAutorizacion\ViewModels\VerificacionViewModel.cs
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Content\bootstrap-grid.css
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Content\bootstrap-grid.min.css
@@ -38,13 +39,20 @@ C:\Users\W2\source\repos\AutentificacionAutorizacion\Content\bootstrap.css
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Content\bootstrap.min.css
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Content\bootstrap.rtl.css
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Content\bootstrap.rtl.min.css
+C:\Users\W2\source\repos\AutentificacionAutorizacion\Estilos\Contacto.css
+C:\Users\W2\source\repos\AutentificacionAutorizacion\Estilos\historial.css
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Estilos\Imagenes\Background\backgroundLogin.jpg
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Estilos\Imagenes\ImagenesMapa\feliz.png
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Estilos\Imagenes\ImagenesMapa\persona.png
+C:\Users\W2\source\repos\AutentificacionAutorizacion\Estilos\Imagenes\instruccionesImg\buscar.jpeg
+C:\Users\W2\source\repos\AutentificacionAutorizacion\Estilos\Imagenes\instruccionesImg\coordenadas.jpeg
+C:\Users\W2\source\repos\AutentificacionAutorizacion\Estilos\Imagenes\instruccionesImg\onoff.jpeg
+C:\Users\W2\source\repos\AutentificacionAutorizacion\Estilos\Imagenes\instruccionesImg\smsbienvenida.jpeg
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Estilos\Imagenes\Logos\logopetmap.png
+C:\Users\W2\source\repos\AutentificacionAutorizacion\Estilos\Imagenes\onoff.jpeg
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Estilos\Instrucciones.css
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Estilos\Layout.css
-C:\Users\W2\source\repos\AutentificacionAutorizacion\Estilos\Login.css
+C:\Users\W2\source\repos\AutentificacionAutorizacion\Estilos\LoginRegistro.css
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Estilos\Map.css
 C:\Users\W2\source\repos\AutentificacionAutorizacion\favicon.ico
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Global.asax
@@ -74,7 +82,7 @@ C:\Users\W2\source\repos\AutentificacionAutorizacion\Views\_ViewStart.cshtml
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Views\Shared\Error.cshtml
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Views\Shared\_Layout.cshtml
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Views\Home\Instrucciones.cshtml
-C:\Users\W2\source\repos\AutentificacionAutorizacion\Views\Home\Contact.cshtml
+C:\Users\W2\source\repos\AutentificacionAutorizacion\Views\Home\Contacto.cshtml
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Views\Home\Map.cshtml
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Views\Inicio\Actualizar.cshtml
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Views\Inicio\Confirmar.cshtml
@@ -86,7 +94,7 @@ C:\Users\W2\source\repos\AutentificacionAutorizacion\Views\Admin\Index.cshtml
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Views\Admin\Crear.cshtml
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Views\Admin\Editar.cshtml
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Views\Admin\Eliminar.cshtml
-C:\Users\W2\source\repos\AutentificacionAutorizacion\Views\DosPasos\Index.cshtml
+C:\Users\W2\source\repos\AutentificacionAutorizacion\Views\DosPasos\DosPasosView.cshtml
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Views\Home\Historial.cshtml
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Content\bootstrap.rtl.min.css.map
 C:\Users\W2\source\repos\AutentificacionAutorizacion\Content\bootstrap.rtl.css.map

@@ -8,6 +8,7 @@ using AutentificacionAutorizacion.Datos;
 using AutentificacionAutorizacion.Servicios;
 using AutentificacionAutorizacion.Negocio;
 using AutentificacionAutorizacion.ViewModels;
+using System.Text.RegularExpressions;
 
 namespace AutentificacionAutorizacion.Controllers
 {
@@ -142,50 +143,108 @@ namespace AutentificacionAutorizacion.Controllers
             return View();
         }
 
-        public ActionResult Restablecer()
-        {
-            return View();
-        }
+        //public ActionResult Restablecer()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //public ActionResult Restablecer(string correo)
+        //{
+
+        //    Usuario usuario = DBUsuario.Obtener(correo);
+        //    ViewBag.Correo = correo;
+        //    if (usuario != null)
+        //    {
+        //        bool respuesta = DBUsuario.RestablecerActualizar(1, usuario.Clave, usuario.Token);
+
+        //        if (respuesta)
+        //        {
+        //            string path = HttpContext.Server.MapPath("~/Plantilla/Restablecer.html");
+        //            string content = System.IO.File.ReadAllText(path);
+        //            string url = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Headers["host"], "/Inicio/Actualizar?token=" + usuario.Token);
+
+        //            string htmlBody = string.Format(content, usuario.Nombre, url);
+
+        //            Correo correoDTO = new Correo()
+        //            {
+        //                Para = correo,
+        //                Asunto = "Restablecer cuenta",
+        //                Contenido = htmlBody
+        //            };
+
+        //            bool enviado = CorreoServicio.Enviar(correoDTO);
+        //            ViewBag.Restablecido = enviado;
+        //        }
+        //        else
+        //        {
+        //            ViewBag.Mensaje = "No se pudo restablecer la cuenta";
+        //        }
+
+        //    }
+        //    else
+        //    {
+        //        ViewBag.Mensaje = "No se encontraron coincidencias con el correo";
+        //    }
+
+        //    return View();
+        //}
+
+
         [HttpPost]
         public ActionResult Restablecer(string correo)
         {
-            Usuario usuario = DBUsuario.Obtener(correo);
-            ViewBag.Correo = correo;
-            if (usuario != null)
+            // Validación básica de la entrada de correo
+            if (!Regex.IsMatch(correo, @"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.IgnoreCase))
             {
-                bool respuesta = DBUsuario.RestablecerActualizar(1, usuario.Clave, usuario.Token);
+                ViewBag.Mensaje = "Formato de correo no válido.";
+                return View();
+            }
 
-                if (respuesta)
+            try
+            {
+                Usuario usuario = DBUsuario.Obtener(correo);
+                ViewBag.Correo = correo;
+                if (usuario != null)
                 {
-                    string path = HttpContext.Server.MapPath("~/Plantilla/Restablecer.html");
-                    string content = System.IO.File.ReadAllText(path);
-                    string url = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Headers["host"], "/Inicio/Actualizar?token=" + usuario.Token);
+                    bool respuesta = DBUsuario.RestablecerActualizar(1, usuario.Clave, usuario.Token);
 
-                    string htmlBody = string.Format(content, usuario.Nombre, url);
-
-                    Correo correoDTO = new Correo()
+                    if (respuesta)
                     {
-                        Para = correo,
-                        Asunto = "Restablecer cuenta",
-                        Contenido = htmlBody
-                    };
+                        string path = HttpContext.Server.MapPath("~/Plantilla/Restablecer.html");
+                        string content = System.IO.File.ReadAllText(path);
+                        string url = $"{Request.Url.Scheme}://{Request.Url.Authority}/Inicio/Actualizar?token={HttpUtility.UrlEncode(usuario.Token)}";
 
-                    bool enviado = CorreoServicio.Enviar(correoDTO);
-                    ViewBag.Restablecido = true;
+                        string htmlBody = string.Format(content, usuario.Nombre, url);
+
+                        Correo correoDTO = new Correo()
+                        {
+                            Para = correo,
+                            Asunto = "Restablecer cuenta",
+                            Contenido = htmlBody
+                        };
+
+                        bool enviado = CorreoServicio.Enviar(correoDTO);
+                        ViewBag.Restablecido = true;
+                    }
+                    else
+                    {
+                        ViewBag.Mensaje = "No se pudo restablecer la cuenta";
+                    }
                 }
                 else
                 {
-                    ViewBag.Mensaje = "No se pudo restablecer la cuenta";
+                    ViewBag.Mensaje = "No se encontraron coincidencias con el correo";
                 }
-
             }
-            else
+            catch (Exception ex)
             {
-                ViewBag.Mensaje = "No se encontraron coincidencias con el correo";
+                // Log the exception details
+                ViewBag.Mensaje = "Ocurrió un error al procesar su solicitud.";
             }
 
             return View();
         }
+
 
         public ActionResult Actualizar(string token)
         {

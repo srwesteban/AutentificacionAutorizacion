@@ -19,7 +19,7 @@
 .titulo {
     font-size: 24px;
     text-align: center;
-    margin-top: 80px; /* Ajusta según necesidad */
+    margin-top: 120px; /* Ajusta según necesidad */
 }
 .steps {
     max-width: 700px; /* Limita el ancho de los pasos */
