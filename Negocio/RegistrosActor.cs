@@ -16,37 +16,55 @@ namespace AutentificacionAutorizacion.Negocio
 
         public static string connectionString = DBUsuario.CadenaSQL;
 
-
-        // Método para guardar un registro en la base de datos
-        public static void CrearRegistro(string coordenadas, string idUsuario)
+        public static bool CrearRegistro(string coordenadas, string idUsuario)
         {
-            // Cadena de conexión obtenida desde el archivo de configuración
-
-            // Consulta SQL para insertar el registro en la tabla Registros
             string query = "INSERT INTO Registros (Coordenadas, FechaBusqueda, IdUsuario) VALUES (@Coordenadas, @FechaBusqueda, @IdUsuario)";
-
-            // Fecha actual
             DateTime fechaBusqueda = DateTime.Now;
 
-            // Crear una nueva conexión a la base de datos
+            if (!UsuarioExiste(idUsuario))
+            {
+                return false; 
+            }
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                // Abrir la conexión
-                connection.Open();
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Coordenadas", coordenadas);
+                        command.Parameters.AddWithValue("@FechaBusqueda", fechaBusqueda);
+                        command.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                        int result = command.ExecuteNonQuery();
+                        if (result > 0)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                }
+            }
+            return false; 
+        }
 
-                // Crear un nuevo comando SQL
+        public static bool UsuarioExiste(string idUsuario)
+        {
+            string query = "SELECT COUNT(*) FROM USUARIO WHERE IdUsuario = @IdUsuario";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    // Agregar parámetros al comando SQL
-                    command.Parameters.AddWithValue("@Coordenadas", coordenadas);
-                    command.Parameters.AddWithValue("@FechaBusqueda", fechaBusqueda);
                     command.Parameters.AddWithValue("@IdUsuario", idUsuario);
-
-                    // Ejecutar el comando SQL (ejecutar la consulta de inserción)
-                    command.ExecuteNonQuery();
+                    int count = (int)command.ExecuteScalar();
+                    return count > 0;
                 }
             }
         }
+
 
         public static void CerrarConexion()
         {
@@ -56,27 +74,30 @@ namespace AutentificacionAutorizacion.Negocio
             }
         }
 
-        public static List<Registro> ObtenerRegistros(string id)
+        public static List<Registro> ObtenerRegistros(string id, int pageNumber, int pageSize)
         {
             List<Registro> registros = new List<Registro>();
-            string query = "SELECT * FROM Registros WHERE IdUsuario = @IdUsuario";
+            string query = @"SELECT * FROM ( 
+                        SELECT ROW_NUMBER() OVER (ORDER BY FechaBusqueda DESC) as RowNum, *
+                        FROM Registros
+                        WHERE IdUsuario = @IdUsuario
+                     ) AS RowConstrainedResult
+                     WHERE RowNum >= @StartRow AND RowNum < @EndRow
+                     ORDER BY RowNum";
 
-            // Crear una nueva conexión a la base de datos
+            int startRow = (pageNumber - 1) * pageSize + 1;
+            int endRow = startRow + pageSize;
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                // Abrir la conexión
                 connection.Open();
-
-                // Crear un nuevo comando SQL
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    // Agregar parámetro al comando SQL
                     command.Parameters.AddWithValue("@IdUsuario", id);
-
-                    // Crear un lector de datos
+                    command.Parameters.AddWithValue("@StartRow", startRow);
+                    command.Parameters.AddWithValue("@EndRow", endRow);
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        // Iterar sobre los resultados y agregarlos a la lista de registros
                         while (reader.Read())
                         {
                             Registro registro = new Registro();
@@ -92,6 +113,22 @@ namespace AutentificacionAutorizacion.Negocio
             }
 
             return registros;
+        }
+
+        public static int ContarRegistros(string idUsuario)
+        {
+            int count = 0;
+            string query = "SELECT COUNT(*) FROM Registros WHERE IdUsuario = @IdUsuario";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IdUsuario", idUsuario);
+                    count = Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+            return count;
         }
 
     }

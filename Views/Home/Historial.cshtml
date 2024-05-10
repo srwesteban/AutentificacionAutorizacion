@@ -1,55 +1,67 @@
-﻿@model List<AutentificacionAutorizacion.Models.Registro>
-@{
-    ViewBag.Title = "Historial";
-}
-<style>
-    .contenido{
-        padding: 20px;
-        margin-top: 20px;
-    }
-    .table{
-        color: white;
-    }
-    h2{
-        padding: 20px 0px 20px 0px;
-        text-align: center;
-    }
-</style>
-<body class="contenido">
-    <h2>Historial</h2>
-    @if (Model != null && Model.Count > 0)
-    {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Fecha de Búsqueda</th>
-                    <th>Coordenadas</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var registro in Model)
-                {
-                    <tr>
-                        <td>@registro.FechaBusqueda.ToString("dd/MM/yyyy hh:mm:ss tt")</td>
-                        <td>@registro.Coordenadas</td>
-                        <td>
-                            <button class="btn btn-primary btn-copy" data-clipboard-text="@registro.Coordenadas">Copiar</button>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <p>No hay registros disponibles.</p>
-    }
-</body>
-
-@section Scripts {
+﻿@model AutentificacionAutorizacion.ViewModels.HistorialViewModel
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Historial de Búsquedas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link href="~/Estilos/historial.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+</head>
+<body>
+    <div class="historial">
+        <h2 class="titulo">Historial de Búsquedas</h2>
+        <div class="historial-content">
+            @if (Model.Registros != null && Model.Registros.Count > 0)
+            {
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="numero">#</th>
+                                <th class="fecha-busqueda">Fecha de Búsqueda</th>
+                                <th class="coordenadas">Coordenadas</th>
+                                <th class="acciones">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int i = 1;
+                            }
+                            @foreach (var registro in Model.Registros)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@registro.FechaBusqueda.ToString("dd/MM/yyyy hh:mm:ss tt")</td>
+                                    <td>@registro.Coordenadas</td>
+                                    <td>
+                                        <button class="btn btn-copy" data-clipboard-text="@registro.Coordenadas">Copiar</button>
+                                    </td>
+                                </tr>
+                                i++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    @for (int d = 1; d <= Model.TotalPages; d++)
+                    {
+                        <button class="page-number btn btn-default @(Model.CurrentPage == d ? "btn-primary" : "btn-light")" data-page="@d">@d</button>
+                    }
+                </div>
+
+
+            }
+            else
+            {
+                <p class="no-records">No hay registros disponibles.</p>
+            }
+        </div>
+    </div>
+
     <script>
+    $(document).ready(function () {
         var clipboard = new ClipboardJS('.btn-copy');
         clipboard.on('success', function (e) {
             alert('¡Coordenadas copiadas al portapapeles!');
@@ -58,5 +70,33 @@
         clipboard.on('error', function (e) {
             alert('Error al copiar coordenadas. Por favor, seleccione manualmente y copie.');
         });
+
+        // Delegación del evento click para los botones de paginación
+        $(document).on('click', '.page-number', function() {
+            var selectedPage = $(this).data('page');
+            loadPage(selectedPage);
+        });
+
+        function loadPage(pageNumber) {
+            $.ajax({
+                url: '@Url.Action("Historial", "Home")',
+                type: 'GET',
+                data: { id: '@Model.IdUsuario', pageNumber: pageNumber, pageSize: 20 },
+                success: function (response) {
+                    $('.table tbody').html($(response).find('.table tbody').html());
+                    updatePaginationButtons(pageNumber, $(response).find('.pagination').html());
+                }
+            });
+        }
+
+        function updatePaginationButtons(pageNumber, paginationHtml) {
+            $('.pagination').html(paginationHtml);
+            $('.page-number').removeClass('btn-primary').addClass('btn-light');
+            $('.page-number[data-page="' + pageNumber + '"]').removeClass('btn-light').addClass('btn-primary');
+        }
+    });
     </script>
-}
+
+
+</body>
+</html>

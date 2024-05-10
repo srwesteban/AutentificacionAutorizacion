@@ -1,0 +1,40 @@
+﻿body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: black; /* Cambiado a negro para mejor legibilidad */
+    background-color: red;
+}
+
+.titulo {
+    text-align: center;
+    color: white; /* Cambiado a negro para mejorar la visibilidad */
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 80px auto; /* Ajustado para dar espacio desde la parte superior */
+    padding: 20px;
+    background-color: black; /* Fondo blanco para mejor legibilidad */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra sutil */
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+input[type="submit"] {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }

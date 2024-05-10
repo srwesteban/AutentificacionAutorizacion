@@ -1,51 +1,54 @@
-﻿
-<!DOCTYPE html>
-<html lang="es">
+﻿<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Historial de Búsquedas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link href="~/Estilos/Instrucciones.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
 </head>
-<body class="nada">
-    <div class="instrucciones-container">
-        <div class="container">
-            <h1 class="titulo">Instrucciones de Uso</h1>
-            <div class="steps">
-                <div class="step">
-                    <img src="~/Images/Logos/encender.png" class="step-image" alt="Encender el Dispositivo">
-                    <div class="step-content">
-                        <h2 class="step-title">Encender el Dispositivo</h2>
-                        <p class="step-description">Localiza el interruptor de encendido/apagado en el dispositivo.</p>
-                    </div>
+<body>
+    <div class="instrucciones">
+        <h2 class="titulo">Instrucciones de Uso del Rastreador de Mascotas PetMap</h2>
+        <div class="steps">
+            <div class="step">
+                <img src="~/Estilos/Imagenes/instruccionesImg/onoff.jpeg" class="step-image" alt="Encender el Dispositivo">
+                <div class="step-content">
+                    <h2 class="step-title">Encender el Dispositivo</h2>
+                    <p class="step-description">
+                        Localiza el interruptor de encendido/apagado, usualmente ubicado en el lateral del dispositivo. Al encenderlo, debería iluminarse un LED indicador. Si no enciende, verifica que la batería esté correctamente cargada o instalada.
+                    </p>
                 </div>
-                <div class="step">
-                    <img src="~/Images/Logos/tarjeta-sim.png" class="step-image" alt="Insertar la Tarjeta SIM">
-                    <div class="step-content">
-                        <h2 class="step-title">Insertar la Tarjeta SIM</h2>
-                        <p class="step-description">Abre la cubierta que protege el espacio para la tarjeta SIM.</p>
-                    </div>
+            </div>
+            <div class="step">
+                <img src="~/Estilos/Imagenes/instruccionesImg/smsbienvenida.jpeg" class="step-image" alt="Insertar la Tarjeta SIM y Esperar Mensaje de Bienvenida">
+                <div class="step-content">
+                    <h2 class="step-title">Esperar mensaje de bienvenida</h2>
+                    <p class="step-description">
+                        Después de encender el dispositivo, deberías recibir un mensaje de bienvenida en aproximadamente 30 segundos. Esto confirma que el dispositivo está operativo y listo para transmitir. Si no recibes el mensaje, asegúrate de que la tarjeta SIM tenga saldo; en Colombia, el costo por SMS es aproximadamente de 60 pesos.
+                    </p>
                 </div>
-                <div class="step">
-                    <img src="~/Images/Logos/luces.png" class="step-image" alt="Verificar la Disponibilidad">
-                    <div class="step-content">
-                        <h2 class="step-title">Verificar la Disponibilidad</h2>
-                        <p class="step-description">Observa las luces indicadoras. Si las luces rojas parpadean, significa que el dispositivo está listo para su uso.</p>
-                    </div>
+            </div>
+            <div class="step">
+                <img src="~/Estilos/Imagenes/instruccionesImg/coordenadas.jpeg" class="step-image" alt="Enviar SMS para Recibir Coordenadas">
+                <div class="step-content">
+                    <h2 class="step-title">Enviar un SMS</h2>
+                    <p class="step-description">
+                        Envía un mensaje de texto al número asociado con la tarjeta SIM del dispositivo. Recibirás automáticamente las coordenadas de ubicación actual del dispositivo, lo cual te permitirá localizarlo en tiempo real.
+                    </p>
                 </div>
-                <div class="step">
-                    <img src="~/Images/Logos/credito.png" class="step-image" alt="Asegurar Crédito o Paquete de Datos en la Tarjeta SIM">
-                    <div class="step-content">
-                        <h2 class="step-title">Asegurar Crédito o Paquete de Datos en la Tarjeta SIM</h2>
-                        <p class="step-description">Asegúrate de que la tarjeta SIM tenga crédito o un paquete de datos y SMS activo.</p>
-                    </div>
+            </div>
+            <div class="step">
+                <img src="~/Estilos/Imagenes/instruccionesImg/buscar.jpeg" class="step-image" alt="Usar las Coordenadas en un Mapa Web">
+                <div class="step-content">
+                    <h2 class="step-title">Copia y Pega las Coordenadas</h2>
+                    <p class="step-description">
+                        Usa las coordenadas recibidas para localizar visualmente la posición del dispositivo en esta pagina web. Esto te permitirá seguir la ubicación de tu mascota en todo momento.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
-    <footer>
-        <p>¡Listo! Ahora puedes utilizar el Rastreador de Mascotas PetMap para mantener a tu mascota segura y localizable en todo momento. ¡Diviértete explorando las aventuras de tu peludo amigo!</p>
-    </footer>
 </body>
 </html>

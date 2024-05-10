@@ -5,34 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetMap</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/Estilos/Layout.css" />
-    <style>
-        .navegador {  
-            background-color: #000;
-            color: #fff;
-        }
-        .navbar {
-            background-color: black;
-            color: white;
-            padding: 0px;
-            border-bottom: 1px solid grey;
-        }
-
-        .navbar-brand {
-            margin-right: auto;
-        }
-
-        .navbar-nav {
-            margin-left: auto;
-        }
-    </style>
+    <link href="~/Estilos/Layout.css" rel="stylesheet">
 </head>
 <body class="navegador">
-    <nav class="navbar navbar-expand-md navbar-dark bg-black fixed-top">
+    <nav class="navbar navbar-expand-md navbar-dark bg-black fixed-top position-absolute">
         <div class="container-fluid">
-            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                <img src="~/Estilos/Imagenes/Logos/logopetmap.png" alt="Logo de PetMap" width="200">
-            </a>
+            @if (ViewBag.Usuario == null)
+            {
+                <a class="navbar-brand" href="@Url.Action("Index", "Invitado")">
+                    <img src="~/Estilos/Imagenes/Logos/logopetmap.png" alt="Logo de PetMap" width="200">
+                </a>
+
+            }
+            else
+            {
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                    <img src="~/Estilos/Imagenes/Logos/logopetmap.png" alt="Logo de PetMap" width="200">
+                </a>
+            }
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -41,7 +32,7 @@
                     @if (ViewBag.Usuario != null)
                     {
                         <li class="nav-item" style="display: flex; align-items: center; font-size: large">
-                            <span class="badge badge-pill badge-light mr-2">Bienvenido!! @ViewBag.Usuario.Nombre</span>
+                            <span class="welcome-badge">Bienvenido!! @ViewBag.Usuario.Nombre</span>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Instrucciones", "Home")">Instrucciones</a>
@@ -50,7 +41,7 @@
                             <a class="nav-link" href="@Url.Action("Historial", "Home", new { id = @ViewBag.Usuario.IdUsuario })">Historial</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Contact", "Home")">Contacto</a>
+                            <a class="nav-link" href="@Url.Action("Contacto", "Home", new { id = @ViewBag.Usuario.IdUsuario })" )">Contacto</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("CerrarSesion", "Home")">Cerrar Sesión</a>
@@ -71,27 +62,31 @@
         </div>
     </nav>
 
-    <div class="container mt-5">
-        @RenderBody()
-    </div>
+
 
     @RenderSection("Scripts", required: false)
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-    const navbarToggle = document.querySelector(".navbar-toggler");
-    const navbarCollapse = document.querySelector(".navbar-collapse");
-    navbarToggle.addEventListener("click", function () {
-    navbarCollapse.classList.toggle("show");
-    });
-    navbarCollapse.addEventListener("click", function (event) {
-    if (event.target.tagName === "A") {
-    navbarCollapse.classList.remove("show");
-    }
-    });
-    });
+        document.addEventListener("DOMContentLoaded", function () {
+            const navbarToggle = document.querySelector(".navbar-toggler");
+            const navbarCollapse = document.querySelector(".navbar-collapse");
+            navbarToggle.addEventListener("click", function () {
+                navbarCollapse.classList.toggle("show");
+            });
+            navbarCollapse.addEventListener("click", function (event) {
+                if (event.target.tagName === "A") {
+                    navbarCollapse.classList.remove("show");
+                }
+            });
+        });
     </script>
+
+    
 </body>
+<div class="mt-5">
+    @RenderBody()
+</div>
+
 
 </html>

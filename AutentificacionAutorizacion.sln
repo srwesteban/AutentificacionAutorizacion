@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutentificacionAutorizacion", "AutentificacionAutorizacion.csproj", "{FCA13063-F992-436F-A2A7-B02540BE5B9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetMap.Test", "..\PetMap.Test\PetMap.Test.csproj", "{6C38CAD5-11F3-4D06-9BB1-6BF01825F414}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{FCA13063-F992-436F-A2A7-B02540BE5B9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCA13063-F992-436F-A2A7-B02540BE5B9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCA13063-F992-436F-A2A7-B02540BE5B9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C38CAD5-11F3-4D06-9BB1-6BF01825F414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C38CAD5-11F3-4D06-9BB1-6BF01825F414}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C38CAD5-11F3-4D06-9BB1-6BF01825F414}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C38CAD5-11F3-4D06-9BB1-6BF01825F414}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,99 @@
+﻿@model AutentificacionAutorizacion.Models.Usuario
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Contacto de Usuario</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        .contenido {
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(248, 249, 250, 0.9);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 0;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .titulo {
+            margin-top: 40px;
+        }
+
+        form {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+            height: 150px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+
+        .nota {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenido">
+
+        <h2 class="titulo">Déjanos un mensaje</h2>
+        <h4>Te escribiremos al correo registrado</h4>
+        <br>
+        <h5>De: @Model.Nombre</h5> <!-- Muestra el nombre del usuario -->
+
+        @using (Html.BeginForm("EnviarComentario", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            <label for="comentario"><i class="fas fa-envelope"></i> Mensaje:</label>
+            <textarea id="comentario" name="comentario" placeholder="Escribe tu mensaje aquí..."></textarea>
+            <input type="submit" value="Enviar" />
+        }
+        @if (TempData["Mensaje"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["Mensaje"]
+            </div>
+        }
+
+        <br>
+        <p class="nota">Nota: Te contestaremos en los próximos 5 días hábiles aproximadamente.</p>
+    </div>
+</body>
+</html>

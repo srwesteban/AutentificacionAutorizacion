@@ -1,0 +1,81 @@
+﻿.historial {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(248, 249, 250, 0.9);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.titulo {
+    margin-top: 80px;
+    font-size: 24px;
+}
+
+.historial-content {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0 10px; /* Espacio vertical entre filas */
+}
+
+    .table th, .table td {
+        padding: 10px;
+        border: 1px solid #ddd; 
+        text-align: center; 
+    }
+
+    .table th {
+        background-color: #f2f2f2;
+    }
+
+.btn-copy {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-copy:hover {
+        background-color: #0056b3;
+    }
+
+.no-records {
+    margin-top: 20px;
+}
+
+.fecha-busqueda, .coordenadas, .acciones {
+    width: 33.333%; /* Igual ancho para cada columna */
+}
+
+@media (max-width: 768px) {
+    .fecha-busqueda, .coordenadas, .acciones {
+        width: 100%;
+    }
+
+    .btn-copy {
+        padding: 4px 8px;
+    }
+    .table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: separate;
+        border-spacing: 0 10px; /* Espacio vertical entre filas */
+        font-size: 12px;
+    }
+}
