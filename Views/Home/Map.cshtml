@@ -20,9 +20,6 @@
             display: none !important;
         }
 
-        .leaflet-control-zoom-in, .leaflet-control-zoom-out {
-            display: none !important;
-        }
     </style>
     <link href="~/Estilos/Map.css" rel="stylesheet" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -52,6 +49,7 @@
             iconSize: [30, 30],
             iconAnchor: [15, 30]
         });
+        var i = 0;
 
         const map = L.map('map').setView([1.2136, -77.2811], 16);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -72,12 +70,15 @@
                 map.removeLayer(userLocation);
             }
             userLocation = agregarMarcador(lat, lng, iconPersona);
+            if (i == 0 && petMarker) {
+                ajustarVistaMapa();
+                i++;
+            }
         }
 
         function errorUbicacionPersona(error) {
             console.error('Error al obtener la ubicación del usuario:', error.message);
         }
-        // ajustar vista
 
         function ajustarVistaMapa() {
             const markers = [userLocation, petMarker].filter(marker => marker !== null);
@@ -146,15 +147,12 @@
                 }
                 petMarker = agregarMarcador(lat, lng, iconMascota);
                 GuardarRegistro(coords);
-                ajustarVistaMapa();
                 calcularRuta();
             } else {
                 alert('Coordenadas no válidas. Por favor, ingrese números válidos.');
             }
         });
-        // ubicacion mascota por default
         petMarker = agregarMarcador(1.22, -77.29, iconMascota);
-        ajustarVistaMapa();
     </script>
 </body>
 </html>

@@ -19,6 +19,7 @@
         .leaflet-routing-container {
             display: none !important;
         }
+
     </style>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="https://unpkg.com/leaflet-routing-machine@3/dist/leaflet-routing-machine.js"></script>
@@ -30,7 +31,7 @@
         <form id="searchForm">
             <label for="coordsInput">Ingrese las coordenadas (latitud, longitud):</label><br>
             <div class="input-container">
-                <input type="text" id="coordsInput" name="coords" placeholder="    Ejemplo: 1.2136,-77.2811" required>
+                <input type="text" id="coordsInput" name="coords" placeholder="  Ejemplo: 1.2136,-77.2811" required>
                 <button type="submit">Buscar</button>
             </div>
         </form>
@@ -47,6 +48,7 @@
             iconSize: [30, 30],
             iconAnchor: [15, 30]
         });
+        var i = 0;
 
         const map = L.map('map').setView([1.2136, -77.2811], 40);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -67,7 +69,10 @@
                 map.removeLayer(userLocation);
             }
             userLocation = agregarMarcador(lat, lng, iconPersona);
-            ajustarVistaMapa();
+            if (i == 0 && petMarker) {  
+                ajustarVistaMapa();
+                i++;
+            }
         }
 
         function errorUbicacionPersona(error) {
@@ -96,12 +101,9 @@
             }
         }
 
-        function calcularRutaManual() {
-            calcularRuta();
-        }
-
         if (navigator.geolocation) {
             navigator.geolocation.watchPosition(actualizarUbicacionPersona, errorUbicacionPersona);
+
         } else {
             console.error('El navegador no soporta geolocalización.');
         }
@@ -117,14 +119,12 @@
                     map.removeLayer(petMarker);
                 }
                 petMarker = agregarMarcador(lat, lng, iconMascota);
-                ajustarVistaMapa();
                 calcularRuta();
             } else {
                 alert('Coordenadas no válidas. Por favor, ingrese números válidos.');
             }
         });
         petMarker = agregarMarcador(1.22, -77.29, iconMascota);
-        ajustarVistaMapa();
     </script>
 </body>
 </html>
