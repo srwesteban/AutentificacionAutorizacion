@@ -1,48 +1,54 @@
-﻿<head>
+﻿<!DOCTYPE html>
+<html>
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Historial de Búsquedas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link href="~/Estilos/Instrucciones.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
 </head>
-<div class="instrucciones">
-    <h2 class="titulo">Instrucciones de Uso del Rastreador de Mascotas PetMap</h2>
-    <div class="steps">
-        <div class="step">
-            <img src="~/Estilos/Imagenes/instruccionesImg/onoff.jpeg" class="step-image" alt="Encender el Dispositivo">
-            <div class="step-content">
-                <h2 class="step-title">Encender el Dispositivo</h2>
-                <p class="step-description">
-                    Localiza el interruptor de encendido/apagado, usualmente ubicado en el lateral del dispositivo. Al encenderlo, debería iluminarse un LED indicador. Si no enciende, verifica que la batería esté correctamente cargada o instalada.
-                </p>
+<body>
+    <div class="instrucciones">
+        <h2 class="titulo">Instrucciones de Uso del Rastreador de Mascotas PetMap</h2>
+        <div class="steps">
+            <div class="step">
+                <img src="~/Estilos/Imagenes/instruccionesImg/onoff.jpeg" class="step-image" alt="Encender el Dispositivo">
+                <div class="step-content">
+                    <h2 class="step-title">Encender el Dispositivo</h2>
+                    <p class="step-description">
+                        Localiza el interruptor de encendido/apagado, usualmente ubicado en el lateral del dispositivo. Al encenderlo, debería iluminarse un LED indicador. Si no enciende, verifica que la batería esté correctamente cargada o instalada.
+                    </p>
+                </div>
             </div>
-        </div>
-        <div class="step">
-            <img src="~/Estilos/Imagenes/instruccionesImg/smsbienvenida.jpeg" class="step-image" alt="Insertar la Tarjeta SIM y Esperar Mensaje de Bienvenida">
-            <div class="step-content">
-                <h2 class="step-title">Esperar mensaje de bienvenida</h2>
-                <p class="step-description">
-                    Después de encender el dispositivo, deberías recibir un mensaje de bienvenida en aproximadamente 30 segundos. Esto confirma que el dispositivo está operativo y listo para transmitir. Si no recibes el mensaje, asegúrate de que la tarjeta SIM tenga saldo; en Colombia, el costo por SMS es aproximadamente de 60 pesos.
-                </p>
+            <div class="step">
+                <img src="~/Estilos/Imagenes/instruccionesImg/smsbienvenida.jpeg" class="step-image" alt="Insertar la Tarjeta SIM y Esperar Mensaje de Bienvenida">
+                <div class="step-content">
+                    <h2 class="step-title">Esperar mensaje de bienvenida</h2>
+                    <p class="step-description">
+                        Después de encender el dispositivo, deberías recibir un mensaje de bienvenida en aproximadamente 30 segundos. Esto confirma que el dispositivo está operativo y listo para transmitir. Si no recibes el mensaje, asegúrate de que la tarjeta SIM tenga saldo; en Colombia, el costo por SMS es aproximadamente de 60 pesos.
+                    </p>
+                </div>
             </div>
-        </div>
-        <div class="step">
-            <img src="~/Estilos/Imagenes/instruccionesImg/coordenadas.jpeg" class="step-image" alt="Enviar SMS para Recibir Coordenadas">
-            <div class="step-content">
-                <h2 class="step-title">Enviar un SMS</h2>
-                <p class="step-description">
-                    Envía un mensaje de texto al número asociado con la tarjeta SIM del dispositivo. Recibirás automáticamente las coordenadas de ubicación actual del dispositivo, lo cual te permitirá localizarlo en tiempo real.
-                </p>
+            <div class="step">
+                <img src="~/Estilos/Imagenes/instruccionesImg/coordenadas.jpeg" class="step-image" alt="Enviar SMS para Recibir Coordenadas">
+                <div class="step-content">
+                    <h2 class="step-title">Enviar un SMS</h2>
+                    <p class="step-description">
+                        Envía un mensaje de texto al número asociado con la tarjeta SIM del dispositivo. Recibirás automáticamente las coordenadas de ubicación actual del dispositivo, lo cual te permitirá localizarlo en tiempo real.
+                    </p>
+                </div>
             </div>
-        </div>
-        <div class="step">
-            <img src="~/Estilos/Imagenes/instruccionesImg/buscar.jpeg" class="step-image" alt="Usar las Coordenadas en un Mapa Web">
-            <div class="step-content">
-                <h2 class="step-title">Copia y Pega las Coordenadas</h2>
-                <p class="step-description">
-                    Usa las coordenadas recibidas para localizar visualmente la posición del dispositivo en esta pagina web. Esto te permitirá seguir la ubicación de tu mascota en todo momento.
-                </p>
+            <div class="step">
+                <img src="~/Estilos/Imagenes/instruccionesImg/buscar.jpeg" class="step-image" alt="Usar las Coordenadas en un Mapa Web">
+                <div class="step-content">
+                    <h2 class="step-title">Copia y Pega las Coordenadas</h2>
+                    <p class="step-description">
+                        Usa las coordenadas recibidas para localizar visualmente la posición del dispositivo en esta pagina web. Esto te permitirá seguir la ubicación de tu mascota en todo momento.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
-    <footer>
-        <p>¡Listo! Ahora puedes utilizar el Rastreador de Mascotas PetMap para mantener a tu mascota segura y localizable en todo momento. ¡Disfruta explorando y compartiendo nuevas aventuras con tu amigo peludo!</p>
-    </footer>
-</div>
+</body>
+</html>
